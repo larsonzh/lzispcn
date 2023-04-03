@@ -5,38 +5,40 @@ IP address data acquisition tool for ISP network operators in China
 
 **v1.0.0**
 
-本工具采用Shell脚本编写，参考并借鉴clangcn（https://github.com/clangcn/everyday-update-cn-isp-ip.git）的项目代码和思路，增加IPv6原始数据的获取功能和基于CIDR网段聚合算法的IPv4/6 CIDR地址数据的生成功能。
+工具采用Shell脚本编写，参考并借鉴clangcn（ https://github.com/clangcn/everyday-update-cn-isp-ip.git ）项目代码和思路，在提供IPv4数据获取的同时，增加IPv6数据获取功能，以及基于CIDR网段聚合算法的IPv4/6 CIDR地址数据的生成功能。
 
 脚本在Linux环境下使用，可运行平台包括：Ubuntu，ASUSWRT-Merlin，OpenWrt, ......
 
 **功能**
-
 <ul><li>从APNIC下载当前最新的IP信息数据。</li>
 
-<li>从APINC IP信息数据中抽取出当前最新的中国大陆及港澳台地区IPv4/6原始地址数据。</li>
+<li>从APINC IP信息数据中抽取出当前最新、最完整的中国大陆及港澳台地区所有IPv4/6原始地址数据。</li>
 
 <li>向APNIC逐条查询中国大陆地区的IPv4/6原始地址数据，得到归属信息，生成中国电信、中国联通/网通、中国移动、中国铁通、中国教育网、长城宽带/鹏博士、中国其他ISP的能够包含中国大陆所有IPv4/6地址的ISP运营商地址数据。</li>
 
 <li>通过CIDR聚合算法生成压缩过的IPv4/6 CIDR格式地址数据。</li></ul>
 
 **安装及运行**
+</ul>脚本使用前需在系统中安装必要的支撑软件包：whois，wget
+<li>Ubuntu</li>
 
-脚本使用前需在系统中安装必要的支撑软件包：whois，wget
-<ul><li>Ubuntu</li>
 ```markdown
     sudo apt update
     sudo apt install whois
-```</ul>
-<ul><li>ASUSWRT-Merlin</li>
+```
+<li>ASUSWRT-Merlin</li>
+
 ```markdown
     先安装Entware软件存储库（可使用系统自带的amtm终端窗口命令安装）。
     opkg update
     opkg install whois
-```</ul>
-<ul><li>OpenWrt</li>
+```
+<li>OpenWrt</li>
+
 ```markdown
     opkg update
     opkg install wget-ssl
-```</ul>
+```
+</ul>
 
 ![lzispcn](https://user-images.githubusercontent.com/73221087/229587948-7758d3a1-68bd-4cf0-b582-a78a5e8a07e5.jpg)
