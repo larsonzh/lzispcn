@@ -571,7 +571,7 @@ aggregate_ipv4_data() {
     until [ "${index}" -ge "24" ]
     do
         mask="$(( 24 - index ))"
-        step="$(( 2 ** ( index % 8 ) ))"
+        [ "$(( index % 8 ))" = "0" ] && step="1"
         if [ "${index}" -lt "8" ]; then
             IP_BUF="$( awk -F '.' '!/#/ && ($3 / "'"${step}"'") % 2 == "0" && $4 == "'"0/${mask}"'" {print $0}' "${2}" )"
         elif [ "${index}" -lt "16" ]; then
@@ -624,6 +624,7 @@ aggregate_ipv4_data() {
 ${IP_BUF}
 IP_BUF_INPUT
         index="$(( index + 1 ))"
+        step="$(( step * step ))"
     done
     sed -i '/#/d' "${2}"
     [ "${PROGRESS_BAR}" = "0" ] && echo "."
@@ -679,7 +680,7 @@ aggregate_ipv6_data() {
     until [ "${index}" -ge "112" ]
     do
         mask="$(( 112 - index ))"
-        step="$(( 2 ** ( index % 16 ) ))"
+        [ "$(( index % 16 ))" = "0" ] && step="1"
         if [ "${index}" -lt "16" ]; then
             IP_BUF="$( awk -F ':' '!/#/ && (("0x"$7) / "'"${step}"'") % 2 == "0" && $8 == "'"0/${mask}"'" {print $0}' "${2}" )"
         elif [ "${index}" -lt "32" ]; then
@@ -753,6 +754,7 @@ aggregate_ipv6_data() {
 ${IP_BUF}
 IP_BUF_INPUT
         index="$(( index + 1 ))"
+        step="$(( step * step ))"
     done
     [ "${PROGRESS_BAR}" = "0" ] && echo -n "."
     sed -i -e '/#/d' -e 's/\([:][0]\)\{2,7\}/::/' -e 's/:::/::/' -e 's/^0::/::/' -e '/^[ ]*$/d' "${2}"
