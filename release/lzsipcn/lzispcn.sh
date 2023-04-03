@@ -679,7 +679,7 @@ aggregate_ipv6_data() {
     until [ "${index}" -ge "112" ]
     do
         mask="$(( 112 - index ))"
-        step="$(( 2 << ( index % 16 ) ))"
+        step="$(( 1 << ( index % 16 ) ))"
         if [ "${index}" -lt "16" ]; then
             IP_BUF="$( awk -F ':' '!/#/ && (("0x"$7) / "'"${step}"'") % 2 == "0" && $8 == "'"0/${mask}"'" {print $0}' "${2}" )"
         elif [ "${index}" -lt "32" ]; then
