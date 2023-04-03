@@ -556,7 +556,7 @@ get_isp_data() {
     return "0"
 }
 
-aggregation_ipv4_cidr_data() {
+aggregate_ipv4_data() {
     if [ ! -f "${1}" ] || [ ! -d "${2%/*}" ]; then return "1"; fi;
     cp -p "${1}" "${2}"
     [ ! -f "${2}" ] && return "1"
@@ -590,7 +590,7 @@ aggregation_ipv4_cidr_data() {
             elif [ "${index}" -lt "16" ]; then
                 next_item="${addr1}.$(( net2 + step )).0.0/${mask}"
             else
-                next_item="$(( addr1 + step )).0.0.0/${mask}"
+                next_item="$(( net1 + step )).0.0.0/${mask}"
             fi
             if grep -q "^${next_item}$" "${2}"; then
                 sed -i -e "s:^${ip_item}$:${ip_item%/*}/$(( mask - 1 )):" -e "s:^${next_item}$:#&:" "${2}"
@@ -636,7 +636,7 @@ get_ipv4_cidr_data() {
     do
         eval sfname="\${ISP_DATA_${index}}"
         eval fname="\${ISP_CIDR_DATA_${index}}"
-        if aggregation_ipv4_cidr_data "${PATH_TMP}/${sfname%.*}.dat" "${PATH_TMP}/${fname%.*}.dat"; then
+        if aggregate_ipv4_data "${PATH_TMP}/${sfname%.*}.dat" "${PATH_TMP}/${fname%.*}.dat"; then
             total="$( grep -Ec '^([0-9]{1,3}[\.]){3}[0-9]{1,3}([\/][0-9]{1,2}){0,1}$' "${PATH_TMP}/${fname%.*}.dat" )"
             lz_echo "${fname} ${total} OK"
         else
@@ -663,7 +663,7 @@ get_ipv6_extend() {
     | awk 'NF == 9 {printf "%x:%x:%x:%x:%x:%x:%x:%x/%u\n",$1,$2,$3,$4,$5,$6,$7,$8,$9}'
 }
 
-aggregation_ipv6_cidr_data() {
+aggregate_ipv6_data() {
     if [ ! -f "${1}" ] || [ ! -d "${2%/*}" ]; then return "1"; fi;
     get_ipv6_extend "${1}" > "${2}"
     [ ! -f "${2}" ] && return "1"
@@ -722,7 +722,7 @@ aggregation_ipv6_cidr_data() {
             elif [ "${index}" -lt "96" ]; then
                 next_item="${addr1}:$( awk 'BEGIN{printf "%x\n", "'"0x${net2}"'" + "'"${step}"'"}' ):0:0:0:0:0:0/${mask}"
             else
-                next_item="$( awk 'BEGIN{printf "%x\n", "'"0x${addr1}"'" + "'"${step}"'"}' ):0:0:0:0:0:0:0/${mask}"
+                next_item="$( awk 'BEGIN{printf "%x\n", "'"0x${net1}"'" + "'"${step}"'"}' ):0:0:0:0:0:0:0/${mask}"
             fi
             if grep -qE "^${next_item}$" "${2}"; then
                 sed -i -e "s|^${ip_item}$|${ip_item%/*}/$(( mask - 1 ))|" -e "s|^${next_item}$|#&|" "${2}"
@@ -766,7 +766,7 @@ get_ipv6_cidr_data() {
     do
         eval sfname="\${ISP_IPV6_DATA_${index}}"
         eval fname="\${ISP_IPV6_CIDR_DATA_${index}}"
-        if aggregation_ipv6_cidr_data "${PATH_TMP}/${sfname%.*}.dat" "${PATH_TMP}/${fname%.*}.dat"; then
+        if aggregate_ipv6_data "${PATH_TMP}/${sfname%.*}.dat" "${PATH_TMP}/${fname%.*}.dat"; then
             total="$( grep -Eic '^[\:0-9a-f]{0,4}[\:][\:0-9a-f]*([\/][0-9]{1,3}){0,1}$' "${PATH_TMP}/${fname%.*}.dat" )"
             lz_echo "${fname} ${total} OK"
         else
