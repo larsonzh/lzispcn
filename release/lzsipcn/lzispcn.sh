@@ -15,7 +15,12 @@
 # Download ISP data      sh ./lzispcn.sh
 # Forced Unlocking       sh ./lzispcn.sh unlock
 
-# Warning: Do not close the terminal window while running in an SSH client.
+# Warning: 
+# After the script is started through the SSH client, do not close the terminal window during operation, as it may
+# cause unexpected interruption of the program execution process.
+# When creating ISP operator classified data, the program needs to access APNIC through the Internet to perform
+# massive information queries, which may take more than an hour or two. Please do not interrupt the execution process
+# of the script program during this process, and be patient.
 
 #BEIGIN
 
