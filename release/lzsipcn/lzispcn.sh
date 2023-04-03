@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 # lzispcn.sh v1.0.0
 # By LZ 妙妙呜 (larsonzhang@gmail.com)
 
@@ -12,12 +12,12 @@
 # 4.Generate compressed IPv4/6 CIDR format address data through the CIDR aggregation algorithm.
 
 # Script Command (e.g., in the lzispcn Directory)
-# Ubuntu | ASUSWRT-Merlin | ...
+# ASUSWRT-Merlin | OpenWrt | ...
 # Download ISP data         ./lzispcn.sh
 # Forced Unlocking          ./lzispcn.sh unlock
-# OpenWrt | ...
-# Download ISP data      sh ./lzispcn.sh
-# Forced Unlocking       sh ./lzispcn.sh unlock
+# Ubuntu ...
+# Download ISP data    bash ./lzispcn.sh
+# Forced Unlocking     bash ./lzispcn.sh unlock
 
 # Warning: 
 # 1.After the script is started through the SSH client, do not close the terminal window during operation, as it may
@@ -891,12 +891,12 @@ show_header() {
     lz_echo "By LZ (larsonzhang@gmail.com)"
     lz_echo "---------------------------------------------"
     lz_echo "Command (in the ${PATH_CURRENT})"
-    lz_echo "Ubuntu | ASUSWRT-Merlin | ..."
-    lz_echo "Download ISP Data     ./lzispcn.sh"
-    lz_echo "Forced Unlocking      ./lzispcn.sh unlock"
-    lz_echo "OpenWrt | ..."
-    lz_echo "Download ISP Data  sh ./lzispcn.sh"
-    lz_echo "Forced Unlocking   sh ./lzispcn.sh unlock"
+    lz_echo "ASUSWRT-Merlin | OpenWrt | ..."
+    lz_echo "Download ISP Data       ./lzispcn.sh"
+    lz_echo "Forced Unlocking        ./lzispcn.sh unlock"
+    lz_echo "Ubuntu | ..."
+    lz_echo "Download ISP Data  bash ./lzispcn.sh"
+    lz_echo "Forced Unlocking   bash ./lzispcn.sh unlock"
     lz_echo "---------------------------------------------"
 }
 
