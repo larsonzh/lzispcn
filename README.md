@@ -7,7 +7,7 @@ IP address data acquisition tool for ISP network operators in China
 
 本工具采用Shell脚本编写，参考并借鉴clangcn（https://github.com/clangcn/everyday-update-cn-isp-ip.git）的项目代码和思路，增加IPv6原始数据的获取功能和基于CIDR网段聚合算法的IPv4/6 CIDR地址数据的生成功能。
 
-脚本在Linux环境下使用，可运行平台包括：Ubuntu，ASUSWRT-Merlin，OpenWrt, ......
+脚本在Linux环境下使用，可运行平台包括：Ubuntu，ASUSWRT-Merlin，OpenWrt，......
 
 **功能**
 
