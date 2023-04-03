@@ -3,9 +3,13 @@
 # By LZ 妙妙呜 (larsonzhang@gmail.com)
 
 # Purpose:
-# 1. Download the current APNIC IP information data file.
-# 2. Obtain the latest IPv4/6 address ISP raw data file in China.
-# 3. Generate compressed IPv4/6 CIDR format data files through the aggregation algorithm.
+# 1.Download the latest IP information data from APNIC.
+# 2.Extract the latest IPv4/6 address raw data of Chinese Mainland, Hong Kong, Macao and Taiwan from the APINC IP
+#   information data.
+# 3.Query the original IPv4/6 address data in Chinese Mainland from APNIC one by one to get the attribution information,
+#   and generate the ISP operator address data of TELECOM, UNICOM/CNC, CMCC, CRTC, CERNET, GWBN, and other NETs that can
+#   contain all IPv4/6 addresses in Chinese Mainland.
+# 4.Generate compressed IPv4/6 CIDR format address data through the CIDR aggregation algorithm.
 
 # Script Command (e.g., in the lzispcn Directory)
 # Ubuntu | ASUSWRT-Merlin | ...
@@ -16,11 +20,11 @@
 # Forced Unlocking       sh ./lzispcn.sh unlock
 
 # Warning: 
-# After the script is started through the SSH client, do not close the terminal window during operation, as it may
-# cause unexpected interruption of the program execution process.
-# When creating ISP operator classified data, the program needs to access APNIC through the Internet to perform
-# massive information queries, which may take more than an hour or two. Please do not interrupt the execution process
-# of the script program during this process, and be patient.
+# 1.After the script is started through the SSH client, do not close the terminal window during operation, as it may
+#   cause unexpected interruption of the program execution process.
+# 2.When creating ISP operator classified data, the program needs to access APNIC through the Internet to perform
+#   massive information queries, which may take more than an hour or two. Please do not interrupt the execution process
+#   of the script program during this process, and be patient.
 
 #BEIGIN
 
