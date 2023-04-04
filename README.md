@@ -83,7 +83,7 @@ IP address data acquisition tool for ISP network operators in China
         启动脚本         ./lzispcn.sh
         强制解锁         ./lzispcn.sh unlock
     Note：
-        脚本在系统中只能有一个实例进程运行，若上次运行过程中非正常退出，再次运行时需先执行「强制解锁」命令，然后再执行「启动脚本」命令。
+        脚本在系统中只能有一个实例进程运行，若上次运行过程中非正常退出，再次运行时需先执行「强制解锁」命令或重启系统，然后再执行「启动脚本」命令。
 ```
 </ul>
 
