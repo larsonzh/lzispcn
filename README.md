@@ -10,12 +10,12 @@ IP address data acquisition tool for ISP network operators in China
 脚本在Linux环境下使用，可运行平台包括：Ubuntu，ASUSWRT-Merlin，OpenWrt，......
 
 **功能**
-<ul><li>从APNIC下载当前最新的IP信息数据。</li>
+<li>从APNIC下载当前最新的IP信息数据。</li>
 <li>从APINC IP信息数据中抽取出当前最新、最完整的中国大陆及港澳台地区所有IPv4/6原始地址数据。</li>
 <li>向APNIC逐条查询中国大陆地区的IPv4/6原始地址数据，得到归属信息，生成能够包含中国大陆地区所有IPv4/6地址的ISP运营商分项数据。</li>
 <li>通过CIDR聚合算法生成压缩过的IPv4/6 CIDR格式地址数据。</li>
-<li>获取的中国IPv4/6地址数据包括4个地区和7个ISP运营商分项：</li>
-    <ul><li>大陆地区</li>
+<li>中国IPv4/6地址数据：含4个地区和7个ISP运营商分项</li>
+    <ul><ul><li>大陆地区</li>
         <ul><li>中国电信</li>
         <li>中国联通/网通</li>
         <li>中国移动</li>
@@ -63,7 +63,7 @@ IP address data acquisition tool for ISP network operators in China
 
 2.将压缩包复制到设备的任意有读写权限的目录。
 
-3.在SHELL终端中使用解压缩命令在当前目录中将软件解压缩，生成lzispcn-[version ID]目录（例如：lzispcn-v1.0.0），进入其中可看到一个lzispcn目录，此为脚本的工作目录。<ul>
+3.在Shell终端中使用解压缩命令在当前目录中将软件解压缩，生成lzispcn-[version ID]目录（例如：lzispcn-v1.0.0），进入其中可看到一个lzispcn目录，此为脚本的工作目录。<ul>
 ```markdown
     tar -xzvf lzispcn-[version ID].tgz
 ```
@@ -85,13 +85,11 @@ IP address data acquisition tool for ISP network operators in China
     ASUSWRT-Merlin | OpenWrt | ...
     启动脚本       ./lzispcn.sh
     强制解锁       ./lzispcn.sh unlock
-    Note：
-        脚本在系统中只能有一个实例进程运行，
-        若上次运行过程中非正常退出，再次运
-        行时需先执行「强制解锁」命令或重启
-        系统，然后再执行「启动脚本」命令。
 ```
 </ul>
+<ul>1.通过Shell终端启动脚本后，在操作过程中不要关闭终端窗口，因为这可能会导致程序执行过程意外中断。</ul>
+<ul>2.脚本在系统中只能有一个实例进程运行，若上次运行过程中非正常退出，再次运行时需先执行「强制解锁」命令或重启系统，然后再执行「启动脚本」命令。</ul>
+<ul>3.创建ISP运营商数据时，程序需要通过互联网访问APNIC进行海量信息查询，这可能要耗费一、两个小时以上时间。此过程中，请不要中断脚本程序的执行过程，并保持耐心。</ul>
 
 **实际效果图**
 
