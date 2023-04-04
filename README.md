@@ -41,7 +41,10 @@ IP address data acquisition tool for ISP network operators in China
 <li>ASUSWRT-Merlin</li>
 
 ```markdown
-    先安装Entware软件存储库（插入格式化为ext4格式的USB盘，键入系统自带的amtm命令，在终端菜单窗口中选择安装Entware到USB盘）。
+    先安装Entware软件存储库：
+    插入格式化为ext4格式的USB盘，键入系统
+    自带的amtm命令，在终端菜单窗口中选择安
+    装Entware到USB盘）。
     opkg update
     opkg install whois
 ```
@@ -75,15 +78,18 @@ IP address data acquisition tool for ISP network operators in China
 <ul>
 
 ```markdown
-    假设Shell终端窗口光标当前正位于lzispcn目录
+    假设Shell终端窗口当前正位于lzispcn目录
     Ubuntu | ...
-        启动脚本    bash ./lzispcn.sh
-        强制解锁    bash ./lzispcn.sh unlock
+    启动脚本    bash ./lzispcn.sh
+    强制解锁    bash ./lzispcn.sh unlock
     ASUSWRT-Merlin | OpenWrt | ...
-        启动脚本         ./lzispcn.sh
-        强制解锁         ./lzispcn.sh unlock
+    启动脚本         ./lzispcn.sh
+    强制解锁         ./lzispcn.sh unlock
     Note：
-        脚本在系统中只能有一个实例进程运行，若上次运行过程中非正常退出，再次运行时需先执行「强制解锁」命令或重启系统，然后再执行「启动脚本」命令。
+        脚本在系统中只能有一个实例进程运行，
+        若上次运行过程中非正常退出，再次运行
+        时需先执行「强制解锁」命令或重启系统，
+        然后再执行「启动脚本」命令。
 ```
 </ul>
 
