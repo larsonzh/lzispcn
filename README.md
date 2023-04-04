@@ -20,7 +20,7 @@ IP address data acquisition tool for ISP network operators in China
 
 **安装及运行**
 
-1.安装支撑软件
+一、安装支撑软件
 
 脚本使用前需在系统中联网安装必要的支撑软件包：whois，wget
 </ul><li>Ubuntu</li>
@@ -44,5 +44,7 @@ IP address data acquisition tool for ISP network operators in China
     opkg install wget-ssl
 ```
 </ul>
+
+二、安装项目脚本
 
 ![lzispcn](https://user-images.githubusercontent.com/73221087/229587948-7758d3a1-68bd-4cf0-b582-a78a5e8a07e5.jpg)
