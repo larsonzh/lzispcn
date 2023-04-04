@@ -93,19 +93,20 @@ IP address data acquisition tool for ISP network operators in China
 <ul>2.脚本在系统中只能有一个实例进程运行，若上次运行过程中非正常退出，再次运行时需先执行「强制解锁」命令或重启系统，然后再执行「启动脚本」命令。</ul>
 <ul>3.创建ISP运营商数据时，程序需要通过互联网访问APNIC进行海量信息查询，这可能要耗费一、两个小时以上时间。此过程中，请不要中断脚本程序的执行过程，并保持耐心。</ul>
 
-四、数据存储位置
+四、目录结构
 
 <ul>在项目目录lzispcn下，脚本为获取和生成的每类数据设立独立的存储目录。</ul>
 <ul>
 
 ```markdown
     lzispcn
-        apnic
-        isp
-        cidr
-        ipv6
-        cidr_ipv6
-        tmp
+      apnic      -- APNIC的IP信息数据
+      isp        -- IPv4原始地址数据
+      cidr       -- IPv4 CIDR地址数据
+      ipv6       -- IPv6原始地址数据
+      cidr_ipv6  -- IPv6 CIDR地址数据
+      tmp        -- 运行中的临时数据
+      lzispcn.sh -- 主程序
 ```
 </ul>
 
