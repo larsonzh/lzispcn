@@ -78,7 +78,7 @@ IP address data acquisition tool for ISP network operators in China
 <ul>
 
 ```markdown
-    假设Shell终端窗口当前正位于lzispcn目录
+    假设当前正位于lzispcn目录
     Ubuntu | ...
     启动脚本  bash ./lzispcn.sh
     强制解锁  bash ./lzispcn.sh unlock
