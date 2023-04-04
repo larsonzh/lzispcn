@@ -20,11 +20,11 @@
 # Forced Unlocking          ./lzispcn.sh unlock
 
 # Warning: 
-# 1.After the script is started through the SSH client, do not close the terminal window during operation, as it may
+# 1.After the script is launched through the Shell terminal, do not close the terminal window during operation, as it may
 #   cause unexpected interruption of the program execution process.
-# 2.When creating ISP operator classified data, the program needs to access APNIC through the Internet to perform
-#   massive information queries, which may take more than an hour or two. Please do not interrupt the execution process
-#   of the script program during this process, and be patient.
+# 2.When creating ISP operator data, the program needs to access APNIC through the internet for massive information queries,
+#   which may take over an hour or two. During this process, please do not interrupt the execution process of the script
+#   program and remain patient.
 
 #BEIGIN
 
