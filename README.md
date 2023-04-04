@@ -10,8 +10,8 @@ IP address data acquisition tool for ISP network operators in China
 脚本在Linux环境下使用，可运行平台包括：Ubuntu，ASUSWRT-Merlin，OpenWrt，......
 
 **功能**
-<ul><li>从APNIC下载当前最新的IP信息数据。</li>
-<li>从APINC IP信息数据中抽取出当前最新、最完整的中国大陆及港澳台地区所有IPv4/6原始地址数据。</li>
+<ul><li>从APNIC下载最新IP信息数据。</li>
+<li>从APINC IP信息数据中抽取出最新、最完整的中国大陆及港澳台地区所有IPv4/6原始地址数据。</li>
 <li>向APNIC逐条查询中国大陆地区的IPv4/6原始地址数据，得到归属信息，生成能够包含中国大陆地区所有IPv4/6地址的ISP运营商分项数据。</li>
 <li>通过CIDR聚合算法生成压缩过的IPv4/6 CIDR格式地址数据。</li>
 <li>中国区IPv4/6地址数据：含4个地区分项和7个ISP运营商分项</li>
