@@ -63,7 +63,7 @@ IP address data acquisition tool for ISP network operators in China
 
 <ul>2.将压缩包复制到设备的任意有读写权限的目录。</ul>
 
-<ul>3.在Shell终端中使用解压缩命令在当前目录中解压缩，生成lzispcn-[version ID]目录（例如：lzispcn-v1.0.0），进入其中可看到一个lzispcn目录，此为脚本的工作目录。</ul>
+<ul>3.在Shell终端中使用解压缩命令在当前目录中解压缩，生成lzispcn-[version ID]目录（例如：lzispcn-v1.0.0），其中可有一个lzispcn目录，此为脚本的工作目录。</ul>
 <ul>
 
 ```markdown
@@ -73,7 +73,7 @@ IP address data acquisition tool for ISP network operators in China
 
 <ul>4.将lzispcn目录复制粘贴到设备中希望放置本脚本的位置。</ul>
 
-<ul>5.在lzispcn目录中，lzispcn.sh为项目工具的可执行脚本，若发现相关的读写运行权限不足，手工赋予755以上即可。</ul>
+<ul>5.在lzispcn目录中，lzispcn.sh为项目工具的可执行脚本，若读写运行权限不足，手工赋予755以上即可。</ul>
 
 三、脚本运行命令
 
@@ -89,7 +89,7 @@ IP address data acquisition tool for ISP network operators in China
     强制解锁       ./lzispcn.sh unlock
 ```
 </ul>
-<ul>1.通过Shell终端启动脚本后，在操作过程中不要关闭终端窗口，因为这可能会导致程序执行过程意外中断。</ul>
+<ul>1.通过Shell终端启动脚本后，在操作过程中不要关闭终端窗口，因为这可能导致程序执行过程意外中断。</ul>
 <ul>2.脚本在系统中只能有一个实例进程运行，若上次运行过程中非正常退出，再次运行时需先执行「强制解锁」命令或重启系统，然后再执行「启动脚本」命令。</ul>
 <ul>3.创建ISP运营商数据时，程序需要通过互联网访问APNIC做海量信息查询，可能要耗费一、两个小时以上时间。此过程中，切勿中断程序执行过程，并保持耐心。</ul>
 
