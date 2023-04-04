@@ -132,7 +132,7 @@ IP address data acquisition tool for ISP network operators in China
 
 **卸载**
 
-<ul>直接删除 lzispcn 目录即可。</ul>
+<ul>直接删除 lzispcn 目录。</ul>
 
 **运行效果图**
 
