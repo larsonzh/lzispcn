@@ -1,20 +1,20 @@
 # lzispcn
 IP address data acquisition tool for ISP network operators in China
 
-中国区ISP网络运营商IP地址数据获取工具
+中国区 ISP 网络运营商 IP 地址数据获取工具
 
 **v1.0.0**
 
-工具采用Shell脚本编写，参考并借鉴clangcn（ https://github.com/clangcn/everyday-update-cn-isp-ip.git ）项目代码和思路，对信息检索和数据写入过程做了些优化。在提供IPv4数据获取的同时，增加IPv6数据获取功能，以及基于CIDR网段聚合算法的IPv4/6 CIDR地址数据的生成功能。
+工具采用 Shell 脚本编写，参考并借鉴 clangcn（ https://github.com/clangcn/everyday-update-cn-isp-ip.git ）项目代码和思路，对信息检索和数据写入过程做了些优化。在提供 IPv4 数据获取的同时，增加 IPv6 数据获取功能，以及基于 CIDR 网段聚合算法的 IPv4/6 CIDR 地址数据的生成功能。
 
-脚本在Linux环境下使用，可运行平台包括：Ubuntu，ASUSWRT-Merlin，OpenWrt，......
+脚本在 Linux 环境下使用，可运行平台包括：Ubuntu，ASUSWRT-Merlin，OpenWrt，......
 
 **功能**
-<ul><li>从APNIC下载最新IP信息数据。</li>
-<li>从APINC IP信息数据中抽取出最新、最完整的中国大陆及港澳台地区所有IPv4/6原始地址数据。</li>
-<li>向APNIC逐条查询中国大陆地区的IPv4/6原始地址数据，得到归属信息，生成能够包含中国大陆地区所有IPv4/6地址的ISP运营商分项数据。</li>
-<li>通过CIDR聚合算法生成压缩过的IPv4/6 CIDR格式地址数据。</li>
-<li>中国区IPv4/6地址数据：含4个地区分项和7个ISP运营商分项</li>
+<ul><li>从 APNIC 下载最新 IP 信息数据。</li>
+<li>从 APINC IP 信息数据中抽取出最新、最完整的中国大陆及港澳台地区所有 IPv4/6 原始地址数据。</li>
+<li>向 APNIC 逐条查询中国大陆地区的 IPv4/6 原始地址数据，得到归属信息，生成能够包含中国大陆地区所有 IPv4/6 地址的 ISP 运营商分项数据。</li>
+<li>通过 CIDR 聚合算法生成压缩过的 IPv4/6 CIDR 格式地址数据。</li>
+<li>中国区 IPv4/6 地址数据：含 4 个地区分项和 7 个 ISP 运营商分项</li>
     <ul><li>大陆地区</li>
         <ul><li>中国电信</li>
         <li>中国联通/网通</li>
@@ -41,10 +41,10 @@ IP address data acquisition tool for ISP network operators in China
 <li>ASUSWRT-Merlin</li>
 
 ```markdown
-  先安装Entware软件存储库：
-  插入格式化为ext4格式的USB盘，键入系统
-  自带的amtm命令，在终端菜单窗口中选择安
-  装Entware到USB盘。
+  先安装 Entware 软件存储库：
+  插入格式化为 ext4 格式的 USB 盘，键入
+  系统自带的 amtm 命令，在终端菜单窗口中
+  选择安装 Entware 到 USB 盘。
   opkg update
   opkg install whois
 ```
@@ -57,15 +57,15 @@ IP address data acquisition tool for ISP network operators in China
 ```
 </ul>
 
-<ul>其他Linux平台系统依此类推。</ul>
+<ul>其他 Linux 平台系统依此类推。</ul>
 
 二、安装项目脚本
 
-<ul>1.下载本工具的软件压缩包“lzsipcn-[version ID].tgz”（例如：lzispcn-v1.0.0.tgz）。</ul>
+<ul>1.下载本工具的软件压缩包 lzsipcn-[version ID].tgz（例如：lzispcn-v1.0.0.tgz）。</ul>
 
 <ul>2.将压缩包复制到设备的任意有读写权限的目录。</ul>
 
-<ul>3.在Shell终端中使用解压缩命令在当前目录中解压缩，生成lzispcn-[version ID]目录（例如：lzispcn-v1.0.0），其中包含一个lzispcn目录，此为脚本所在目录。</ul>
+<ul>3.在 Shell 终端中使用解压缩命令在当前目录中解压缩，生成 lzispcn-[version ID] 目录（例如：lzispcn-v1.0.0），其中包含一个 lzispcn 目录，此为脚本所在目录。</ul>
 <ul>
 
 ```markdown
@@ -73,16 +73,16 @@ IP address data acquisition tool for ISP network operators in China
 ```
 </ul>
 
-<ul>4.将lzispcn目录整体复制粘贴到设备中希望放置本工具的位置。</ul>
+<ul>4.将 lzispcn 目录整体复制粘贴到设备中希望放置本工具的位置。</ul>
 
-<ul>5.在lzispcn目录中，lzispcn.sh为本工具的可执行脚本，若读写运行权限不足，手工赋予755以上即可。</ul>
+<ul>5.在 lzispcn 目录中，lzispcn.sh 为本工具的可执行脚本，若读写运行权限不足，手工赋予 755 以上即可。</ul>
 
 三、脚本运行命令
 
 <ul>
 
 ```markdown
-  假设当前位于lzispcn目录
+  假设当前位于 lzispcn 目录
   Ubuntu | ...
   启动脚本    bash ./lzispcn.sh
   强制解锁    bash ./lzispcn.sh unlock
@@ -91,22 +91,22 @@ IP address data acquisition tool for ISP network operators in China
   强制解锁         ./lzispcn.sh unlock
 ```
 </ul>
-<ul>1.通过Shell终端启动脚本后，在操作过程中不要关闭终端窗口，这可能导致程序执行过程意外中断。</ul>
+<ul>1.通过 Shell 终端启动脚本后，在操作过程中不要关闭终端窗口，这可能导致程序执行过程意外中断。</ul>
 <ul>2.脚本在系统中只能有一个实例进程运行，若上次运行过程中非正常退出，再次运行时需先执行「强制解锁」命令或重启系统，然后再执行「启动脚本」命令。</ul>
-<ul>3.创建ISP运营商数据时，程序需要通过互联网访问APNIC做海量信息查询，可能要耗费一、两个小时以上时间。此过程中，切勿中断程序执行过程，并耐心等候。</ul>
+<ul>3.创建 ISP 运营商数据时，程序需要通过互联网访问 APNIC 做海量信息查询，可能要耗费一、两个小时以上时间。此过程中，切勿中断程序执行过程，并耐心等候。</ul>
 
 四、目录结构
 
-<ul>在项目目录lzispcn下，脚本为获取和生成的每类文本形式的数据设立独立的存储目录，在程序执行完成后，从这些目录中可获取所需数据。</ul>
+<ul>在项目目录 lzispcn 下，脚本为获取和生成的每类文本形式的数据设立独立的存储目录，在程序执行完成后，从这些目录中可获取所需数据。</ul>
 <ul>
 
 ```markdown
   [lzispcn]
-    [apnic]      -- APNIC的IP信息数据
-    [isp]        -- IPv4原始地址数据
-    [cidr]       -- IPv4 CIDR地址数据
-    [ipv6]       -- IPv6原始地址数据
-    [cidr_ipv6]  -- IPv6 CIDR地址数据
+    [apnic]      -- APNIC 的 IP 信息数据
+    [isp]        -- IPv4 原始地址数据
+    [cidr]       -- IPv4 CIDR 地址数据
+    [ipv6]       -- IPv6 原始地址数据
+    [cidr_ipv6]  -- IPv6 CIDR 地址数据
     [tmp]        -- 运行中的临时数据
     lzispcn.sh   -- 主程序
 ```
@@ -114,7 +114,7 @@ IP address data acquisition tool for ISP network operators in China
 
 五、参数配置
 
-<ul>“lzispcn.sh”脚本是本工具的主程序，可用文本编辑工具打开查看、修改其中的内容。</ul>
+<ul>lzispcn.sh 脚本是本工具的主程序，可用文本编辑工具打开查看、修改其中的内容。</ul>
     
 <ul>该代码的前部分有供用户修改的参数变量，可根据内部注释修改。</ul>
 <ul>
@@ -132,7 +132,7 @@ IP address data acquisition tool for ISP network operators in China
 
 **卸载**
 
-<ul>直接删除lzispcn目录即可。</ul>
+<ul>直接删除 lzispcn 目录即可。</ul>
 
 **运行效果图**
 
