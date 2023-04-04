@@ -47,4 +47,7 @@ IP address data acquisition tool for ISP network operators in China
 
 二、安装项目脚本
 
-![lzispcn](https://user-images.githubusercontent.com/73221087/229587948-7758d3a1-68bd-4cf0-b582-a78a5e8a07e5.jpg)
+
+![lzispcn](https://user-images.githubusercontent.com/73221087/229751079-8ab97633-03d2-43e0-bc2c-810a2aec95c6.jpg)
+
+
