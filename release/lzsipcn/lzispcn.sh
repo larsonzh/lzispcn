@@ -12,12 +12,12 @@
 # 4.Generate compressed IPv4/6 CIDR format address data through the CIDR aggregation algorithm.
 
 # Script Command (e.g., in the lzispcn Directory)
+# Ubuntu | ...
+# Launch Script        bash ./lzispcn.sh
+# Forced Unlocking     bash ./lzispcn.sh unlock
 # ASUSWRT-Merlin | OpenWrt | ...
 # Launch Script             ./lzispcn.sh
 # Forced Unlocking          ./lzispcn.sh unlock
-# Ubuntu ...
-# Launch Script        bash ./lzispcn.sh
-# Forced Unlocking     bash ./lzispcn.sh unlock
 
 # Warning: 
 # 1.After the script is started through the SSH client, do not close the terminal window during operation, as it may
@@ -891,12 +891,12 @@ show_header() {
     lz_echo "By LZ (larsonzhang@gmail.com)"
     lz_echo "---------------------------------------------"
     lz_echo "Command (in the ${PATH_CURRENT})"
-    lz_echo "ASUSWRT-Merlin | OpenWrt | ..."
-    lz_echo "Launch Script           ./lzispcn.sh"
-    lz_echo "Forced Unlocking        ./lzispcn.sh unlock"
     lz_echo "Ubuntu | ..."
     lz_echo "Launch Script      bash ./lzispcn.sh"
     lz_echo "Forced Unlocking   bash ./lzispcn.sh unlock"
+    lz_echo "ASUSWRT-Merlin | OpenWrt | ..."
+    lz_echo "Launch Script           ./lzispcn.sh"
+    lz_echo "Forced Unlocking        ./lzispcn.sh unlock"
     lz_echo "---------------------------------------------"
 }
 
