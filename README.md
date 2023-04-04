@@ -114,7 +114,7 @@ IP address data acquisition tool for ISP network operators in China
 
 <ul>“lzispcn.sh”脚本是本工具的主程序，可用文本编辑工具打开查看、修改其中的内容。</ul>
     
-<ul>该代码的前部分是可供用户修改的参数变量，可根据注释进行修改。</ul>
+<ul>该代码的前部分有供用户修改的参数变量，可根据内部注释修改。</ul>
 <ul>
 
 ```markdown
