@@ -31,7 +31,7 @@ IP address data acquisition tool for ISP network operators in China
 
 一、安装支撑软件
 
-<ul>脚本使用前最好将所在系统更新到最新版本，同时需要在系统中联网安装脚本运行必须使用的支撑软件包：whois，wget</ul>
+<ul>脚本使用前最好将所在系统更新到最新版本，同时需要在系统中联网安装脚本执行时依赖的软件包：whois，wget</ul>
 <ul><li>Ubuntu</li>
 
 ```markdown
@@ -63,7 +63,7 @@ IP address data acquisition tool for ISP network operators in China
 
 <ul>2.将压缩包复制到设备的任意有读写权限的目录。</ul>
 
-<ul>3.在Shell终端中使用解压缩命令在当前目录中解压缩，生成lzispcn-[version ID]目录（例如：lzispcn-v1.0.0），其中可有一个lzispcn目录，此为脚本的工作目录。</ul>
+<ul>3.在Shell终端中使用解压缩命令在当前目录中解压缩，生成lzispcn-[version ID]目录（例如：lzispcn-v1.0.0），其中包含一个lzispcn目录，此为脚本所在目录。</ul>
 <ul>
 
 ```markdown
@@ -71,9 +71,9 @@ IP address data acquisition tool for ISP network operators in China
 ```
 </ul>
 
-<ul>4.将lzispcn目录复制粘贴到设备中希望放置本脚本的位置。</ul>
+<ul>4.将lzispcn目录整体复制粘贴到设备中希望放置本工具的位置。</ul>
 
-<ul>5.在lzispcn目录中，lzispcn.sh为项目工具的可执行脚本，若读写运行权限不足，手工赋予755以上即可。</ul>
+<ul>5.在lzispcn目录中，lzispcn.sh为本工具的可执行脚本，若读写运行权限不足，手工赋予755以上即可。</ul>
 
 三、脚本运行命令
 
@@ -89,13 +89,13 @@ IP address data acquisition tool for ISP network operators in China
     强制解锁       ./lzispcn.sh unlock
 ```
 </ul>
-<ul>1.通过Shell终端启动脚本后，在操作过程中不要关闭终端窗口，因为这可能导致程序执行过程意外中断。</ul>
+<ul>1.通过Shell终端启动脚本后，在操作过程中不要关闭终端窗口，这可能导致程序执行过程意外中断。</ul>
 <ul>2.脚本在系统中只能有一个实例进程运行，若上次运行过程中非正常退出，再次运行时需先执行「强制解锁」命令或重启系统，然后再执行「启动脚本」命令。</ul>
-<ul>3.创建ISP运营商数据时，程序需要通过互联网访问APNIC做海量信息查询，可能要耗费一、两个小时以上时间。此过程中，切勿中断程序执行过程，并保持耐心。</ul>
+<ul>3.创建ISP运营商数据时，程序需要通过互联网访问APNIC做海量信息查询，可能要耗费一、两个小时以上时间。此过程中，切勿中断程序执行过程，并耐心等候。</ul>
 
 四、目录结构
 
-<ul>在项目目录lzispcn下，脚本为获取和生成的每类数据设立独立的存储目录。</ul>
+<ul>在项目目录lzispcn下，脚本为获取和生成的每类文本形式的数据设立独立的存储目录，在程序执行完成后，从这些目录中可获取所需数据。</ul>
 <ul>
 
 ```markdown
@@ -110,9 +110,13 @@ IP address data acquisition tool for ISP network operators in China
 ```
 </ul>
 
+五、参数配置
+
+<ul>“lzispcn.sh”脚本是本工具的主程序，可用文本编辑工具打开查看、修改其中的内容。该代码的前部分是可供用户修改的参数变量，包括：项目工作目录，目标数据文件名，需要获取哪类数据，信息查询失败后的重试次数，是否显示进度条，系统日志文件定义等，可根据注释进行修改。</ul>
+
 **卸载**
 
-<ul>直接删除lzispcn目录，脚本软件即可全部清除。</ul>
+<ul>直接删除lzispcn目录即可。</ul>
 
 **运行效果图**
 
