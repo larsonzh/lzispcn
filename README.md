@@ -91,6 +91,12 @@ IP address data acquisition tool for ISP network operators in China
 <ul>2.脚本在系统中只能有一个实例进程运行，若上次运行过程中非正常退出，再次运行时需先执行「强制解锁」命令或重启系统，然后再执行「启动脚本」命令。</ul>
 <ul>3.创建ISP运营商数据时，程序需要通过互联网访问APNIC进行海量信息查询，这可能要耗费一、两个小时以上时间。此过程中，请不要中断脚本程序的执行过程，并保持耐心。</ul>
 
-**实际效果图**
+四、数据存储位置
+
+**卸载**
+
+直接删除lzispcn目录，脚本软件即可全部清除。
+
+**运行效果图**
 
 ![lzispcn](https://user-images.githubusercontent.com/73221087/229790889-b6f02ff0-9f09-441a-8b83-aa029d3a6458.jpg)
