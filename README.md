@@ -22,7 +22,7 @@ IP address data acquisition tool for ISP network operators in China
 
 1.安装支撑软件
 
-脚本使用前需在系统中安装必要的支撑软件包：whois，wget
+脚本使用前需在系统中联网安装必要的支撑软件包：whois，wget
 </ul><li>Ubuntu</li>
 
 ```markdown
