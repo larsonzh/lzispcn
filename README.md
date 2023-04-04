@@ -31,7 +31,7 @@ IP address data acquisition tool for ISP network operators in China
 
 一、安装支撑软件
 
-脚本使用前需在系统中联网安装必要的支撑软件包：whois，wget
+脚本使用前最好将所在系统更新到最新版本，同时需要在系统中联网安装脚本运行必须使用的支撑软件包：whois，wget
 <ul><li>Ubuntu</li>
 
 ```markdown
@@ -70,7 +70,22 @@ IP address data acquisition tool for ISP network operators in China
 
 5.在lzispcn目录中，lzispcn.sh为项目工具的可执行脚本，若发现相关的读写运行权限不足，手工赋予755以上即可。
 
-三、运行脚本
+三、脚本运行命令
+
+<ul>
+
+```markdown
+    假设Shell终端窗口光标当前正位于lzispcn目录
+    Ubuntu | ...
+        启动脚本    bash ./lzispcn.sh
+        强制解锁    bash ./lzispcn.sh unlock
+    ASUSWRT-Merlin | OpenWrt | ...
+        启动脚本         ./lzispcn.sh
+        强制解锁         ./lzispcn.sh unlock
+    Note：
+        脚本在系统中只能有一个实例进程运行，若上次运行过程中非正常退出，再次运行时需先执行「强制解锁」命令，然后再执行「启动脚本」命令。
+```
+</ul>
 
 **实际效果图**
 
