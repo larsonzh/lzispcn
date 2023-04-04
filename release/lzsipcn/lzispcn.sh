@@ -13,10 +13,10 @@
 
 # Script Command (e.g., in the lzispcn Directory)
 # ASUSWRT-Merlin | OpenWrt | ...
-# Download ISP data         ./lzispcn.sh
+# Launch Script             ./lzispcn.sh
 # Forced Unlocking          ./lzispcn.sh unlock
 # Ubuntu ...
-# Download ISP data    bash ./lzispcn.sh
+# Launch Script        bash ./lzispcn.sh
 # Forced Unlocking     bash ./lzispcn.sh unlock
 
 # Warning: 
