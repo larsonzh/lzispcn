@@ -35,25 +35,25 @@ IP address data acquisition tool for ISP network operators in China
 <ul><li>Ubuntu</li>
 
 ```markdown
-    sudo apt update
-    sudo apt install whois
+  sudo apt update
+  sudo apt install whois
 ```
 <li>ASUSWRT-Merlin</li>
 
 ```markdown
-    先安装Entware软件存储库：
-    插入格式化为ext4格式的USB盘，键入系统
-    自带的amtm命令，在终端菜单窗口中选择安
-    装Entware到USB盘。
-    opkg update
-    opkg install whois
+  先安装Entware软件存储库：
+  插入格式化为ext4格式的USB盘，键入系统
+  自带的amtm命令，在终端菜单窗口中选择安
+  装Entware到USB盘。
+  opkg update
+  opkg install whois
 ```
 <li>OpenWrt</li>
 
 ```markdown
-    opkg update
-    opkg install whois
-    opkg install wget-ssl
+  opkg update
+  opkg install whois
+  opkg install wget-ssl
 ```
 </ul>
 
@@ -67,7 +67,7 @@ IP address data acquisition tool for ISP network operators in China
 <ul>
 
 ```markdown
-    tar -xzvf lzispcn-[version ID].tgz
+  tar -xzvf lzispcn-[version ID].tgz
 ```
 </ul>
 
@@ -80,13 +80,13 @@ IP address data acquisition tool for ISP network operators in China
 <ul>
 
 ```markdown
-    假设当前位于lzispcn目录
-    Ubuntu | ...
-    启动脚本  bash ./lzispcn.sh
-    强制解锁  bash ./lzispcn.sh unlock
-    ASUSWRT-Merlin | OpenWrt | ...
-    启动脚本       ./lzispcn.sh
-    强制解锁       ./lzispcn.sh unlock
+  假设当前位于lzispcn目录
+  Ubuntu | ...
+  启动脚本    bash ./lzispcn.sh
+  强制解锁    bash ./lzispcn.sh unlock
+  ASUSWRT-Merlin | OpenWrt | ...
+  启动脚本         ./lzispcn.sh
+  强制解锁         ./lzispcn.sh unlock
 ```
 </ul>
 <ul>1.通过Shell终端启动脚本后，在操作过程中不要关闭终端窗口，这可能导致程序执行过程意外中断。</ul>
@@ -100,19 +100,21 @@ IP address data acquisition tool for ISP network operators in China
 
 ```markdown
     [lzispcn]
-      [apnic]      -- APNIC的IP信息数据
-      [isp]        -- IPv4原始地址数据
-      [cidr]       -- IPv4 CIDR地址数据
-      [ipv6]       -- IPv6原始地址数据
-      [cidr_ipv6]  -- IPv6 CIDR地址数据
-      [tmp]        -- 运行中的临时数据
-      lzispcn.sh -- 主程序
+    [apnic]      -- APNIC的IP信息数据
+    [isp]        -- IPv4原始地址数据
+    [cidr]       -- IPv4 CIDR地址数据
+    [ipv6]       -- IPv6原始地址数据
+    [cidr_ipv6]  -- IPv6 CIDR地址数据
+    [tmp]        -- 运行中的临时数据
+    lzispcn.sh   -- 主程序
 ```
 </ul>
 
 五、参数配置
 
-<ul>“lzispcn.sh”脚本是本工具的主程序，可用文本编辑工具打开查看、修改其中的内容。该代码的前部分是可供用户修改的参数变量，包括：项目工作目录，目标数据文件名，需要获取哪类数据，信息查询失败后的重试次数，是否显示进度条，系统日志文件定义等，可根据注释进行修改。</ul>
+<ul>“lzispcn.sh”脚本是本工具的主程序，可用文本编辑工具打开查看、修改其中的内容。</ul>
+    
+<ul>该代码的前部分是可供用户修改的参数变量，包括：项目工作目录，目标数据文件名，需要获取哪类数据，信息查询失败后的重试次数，是否显示进度条，系统日志文件定义等，可根据注释进行修改。</ul>
 
 **卸载**
 
