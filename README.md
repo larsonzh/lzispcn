@@ -11,16 +11,28 @@ IP address data acquisition tool for ISP network operators in China
 
 **功能**
 <ul><li>从APNIC下载当前最新的IP信息数据。</li>
-
 <li>从APINC IP信息数据中抽取出当前最新、最完整的中国大陆及港澳台地区所有IPv4/6原始地址数据。</li>
-
-<li>向APNIC逐条查询中国大陆地区的IPv4/6原始地址数据，得到归属信息，生成中国电信、中国联通/网通、中国移动、中国铁通、中国教育网、长城宽带/鹏博士、中国大陆其他ISP的能够包含中国大陆所有IPv4/6地址的ISP运营商地址数据。</li>
-
-<li>通过CIDR聚合算法生成压缩过的IPv4/6 CIDR格式地址数据。</li></ul>
+<li>向APNIC逐条查询中国大陆地区的IPv4/6原始地址数据，得到归属信息，生成能够包含中国大陆地区所有IPv4/6地址的ISP运营商分项数据。</li>
+<li>通过CIDR聚合算法生成压缩过的IPv4/6 CIDR格式地址数据。</li>
+<li>获取的中国IPv4/6地址数据包括4个地区和7个ISP运营商分项：</li>
+    <ul><li>大陆地区</li>
+        <ul><li>中国电信</li>
+        <li>中国联通/网通</li>
+        <li>中国移动</li>
+        <li>中国铁通</li>
+        <li>中国教育网</li>
+        <li>长城宽带/鹏博士</li>
+        <li>中国大陆其他</li></ul>
+    <li>香港地区</li>
+    <li>澳门地区</li>
+    <li>台湾地区</li></ul></ul>
 
 **安装及运行**
-</ul>脚本使用前需在系统中安装必要的支撑软件包：whois，wget
-<li>Ubuntu</li>
+
+一、安装支撑软件
+
+脚本使用前最好将所在系统更新到最新版本，同时需要在系统中联网安装脚本运行必须使用的支撑软件包：whois，wget
+<ul><li>Ubuntu</li>
 
 ```markdown
     sudo apt update
@@ -29,7 +41,10 @@ IP address data acquisition tool for ISP network operators in China
 <li>ASUSWRT-Merlin</li>
 
 ```markdown
-    先安装Entware软件存储库（可使用系统自带的amtm终端窗口命令安装）。
+    先安装Entware软件存储库：
+    插入格式化为ext4格式的USB盘，键入系统
+    自带的amtm命令，在终端菜单窗口中选择安
+    装Entware到USB盘。
     opkg update
     opkg install whois
 ```
@@ -42,4 +57,42 @@ IP address data acquisition tool for ISP network operators in China
 ```
 </ul>
 
-![lzispcn](https://user-images.githubusercontent.com/73221087/229587948-7758d3a1-68bd-4cf0-b582-a78a5e8a07e5.jpg)
+二、安装项目脚本
+
+1.下载本工具的软件压缩包“lzsipcn-[version ID].tgz”（例如：lzispcn-v1.0.0.tgz）。
+
+2.将压缩包复制到设备的任意有读写权限的目录。
+
+3.在SHELL终端中使用解压缩命令在当前目录中将软件解压缩，生成lzispcn-[version ID]目录（例如：lzispcn-v1.0.0），进入其中可看到一个lzispcn目录，此为脚本的工作目录。<ul>
+```markdown
+    tar -xzvf lzispcn-[version ID].tgz
+```
+</ul>
+
+4.将lzispcn目录复制或剪切粘贴到设备中希望放置本脚本的位置，则完成本软件的安装。
+
+5.在lzispcn目录中，lzispcn.sh为项目工具的可执行脚本，若发现相关的读写运行权限不足，手工赋予755以上即可。
+
+三、脚本运行命令
+
+<ul>
+
+```markdown
+    假设当前正位于lzispcn目录
+    Ubuntu | ...
+    启动脚本  bash ./lzispcn.sh
+    强制解锁  bash ./lzispcn.sh unlock
+    ASUSWRT-Merlin | OpenWrt | ...
+    启动脚本       ./lzispcn.sh
+    强制解锁       ./lzispcn.sh unlock
+    Note：
+        脚本在系统中只能有一个实例进程运行，
+        若上次运行过程中非正常退出，再次运
+        行时需先执行「强制解锁」命令或重启
+        系统，然后再执行「启动脚本」命令。
+```
+</ul>
+
+**实际效果图**
+
+![lzispcn](https://user-images.githubusercontent.com/73221087/229790889-b6f02ff0-9f09-441a-8b83-aa029d3a6458.jpg)
