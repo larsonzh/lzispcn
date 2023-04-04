@@ -65,7 +65,7 @@ IP address data acquisition tool for ISP network operators in China
 
 <ul>2.将压缩包复制到设备的任意有读写权限的目录。</ul>
 
-<ul>3.在 Shell 终端中使用解压缩命令在当前目录中解压缩，生成 lzispcn-[version ID] 目录（例如：lzispcn-v1.0.0），其中包含一个 lzispcn 目录，此为脚本所在目录。</ul>
+<ul>3.在 Shell 终端中使用解压缩命令在当前目录中解压缩，生成 lzispcn-[version ID] 目录（例如：lzispcn-v1.0.0），其中包含一个 lzispcn 目录，是脚本所在目录。</ul>
 <ul>
 
 ```markdown
@@ -93,7 +93,7 @@ IP address data acquisition tool for ISP network operators in China
 </ul>
 <ul>1.通过 Shell 终端启动脚本后，在操作过程中不要关闭终端窗口，这可能导致程序执行过程意外中断。</ul>
 <ul>2.脚本在系统中只能有一个实例进程运行，若上次运行过程中非正常退出，再次运行时需先执行「强制解锁」命令或重启系统，然后再执行「启动脚本」命令。</ul>
-<ul>3.创建 ISP 运营商数据时，程序需要通过互联网访问 APNIC 做海量信息查询，可能要耗费一、两个小时以上时间。此过程中，切勿中断程序执行过程，并耐心等候。</ul>
+<ul>3.创建 ISP 运营商数据时，程序需要通过互联网访问 APNIC 做海量信息查询，可能要耗费一、两个小时以上时间。切勿中断此执行过程，并耐心等候。</ul>
 
 四、目录结构
 
@@ -120,7 +120,7 @@ IP address data acquisition tool for ISP network operators in China
 <ul>
 
 ```markdown
-  项目工作目录
+  项目目录
   目标数据文件名
   需要获取哪类数据
   信息查询失败后的重试次数
