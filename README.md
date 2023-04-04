@@ -99,7 +99,7 @@ IP address data acquisition tool for ISP network operators in China
 <ul>
 
 ```markdown
-    [lzispcn]
+  [lzispcn]
     [apnic]      -- APNIC的IP信息数据
     [isp]        -- IPv4原始地址数据
     [cidr]       -- IPv4 CIDR地址数据
@@ -114,7 +114,19 @@ IP address data acquisition tool for ISP network operators in China
 
 <ul>“lzispcn.sh”脚本是本工具的主程序，可用文本编辑工具打开查看、修改其中的内容。</ul>
     
-<ul>该代码的前部分是可供用户修改的参数变量，包括：项目工作目录，目标数据文件名，需要获取哪类数据，信息查询失败后的重试次数，是否显示进度条，系统日志文件定义等，可根据注释进行修改。</ul>
+<ul>该代码的前部分是可供用户修改的参数变量，可根据注释进行修改。</ul>
+<ul>
+
+```markdown
+  项目工作目录
+  目标数据文件名
+  需要获取哪类数据
+  信息查询失败后的重试次数
+  是否显示进度条
+  系统日志文件定义
+  ......
+```
+</ul>
 
 **卸载**
 
