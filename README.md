@@ -32,7 +32,7 @@ IP address data acquisition tool for ISP network operators in China
 <li>ASUSWRT-Merlin</li>
 
 ```markdown
-    先安装Entware软件存储库（可使用系统自带的amtm终端窗口命令安装）。
+    先安装Entware软件存储库（插入格式化为ext4格式的USB盘，键入系统自带的amtm命令，在终端菜单窗口中选择安装Entware到USB盘）。
     opkg update
     opkg install whois
 ```
