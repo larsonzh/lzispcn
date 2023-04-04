@@ -31,7 +31,7 @@ IP address data acquisition tool for ISP network operators in China
 
 一、安装支撑软件
 
-脚本使用前最好将所在系统更新到最新版本，同时需要在系统中联网安装脚本运行必须使用的支撑软件包：whois，wget
+<ul>脚本使用前最好将所在系统更新到最新版本，同时需要在系统中联网安装脚本运行必须使用的支撑软件包：whois，wget</ul>
 <ul><li>Ubuntu</li>
 
 ```markdown
@@ -59,19 +59,21 @@ IP address data acquisition tool for ISP network operators in China
 
 二、安装项目脚本
 
-1.下载本工具的软件压缩包“lzsipcn-[version ID].tgz”（例如：lzispcn-v1.0.0.tgz）。
+<ul>1.下载本工具的软件压缩包“lzsipcn-[version ID].tgz”（例如：lzispcn-v1.0.0.tgz）。</ul>
 
-2.将压缩包复制到设备的任意有读写权限的目录。
+<ul>2.将压缩包复制到设备的任意有读写权限的目录。</ul>
 
-3.在Shell终端中使用解压缩命令在当前目录中将软件解压缩，生成lzispcn-[version ID]目录（例如：lzispcn-v1.0.0），进入其中可看到一个lzispcn目录，此为脚本的工作目录。<ul>
+<ul>3.在Shell终端中使用解压缩命令在当前目录中将软件解压缩，生成lzispcn-[version ID]目录（例如：lzispcn-v1.0.0），进入其中可看到一个lzispcn目录，此为脚本的工作目录。</ul>
+<ul>
+
 ```markdown
     tar -xzvf lzispcn-[version ID].tgz
 ```
 </ul>
 
-4.将lzispcn目录复制或剪切粘贴到设备中希望放置本脚本的位置，则完成本软件的安装。
+<ul>4.将lzispcn目录复制或剪切粘贴到设备中希望放置本脚本的位置，则完成本软件的安装。</ul>
 
-5.在lzispcn目录中，lzispcn.sh为项目工具的可执行脚本，若发现相关的读写运行权限不足，手工赋予755以上即可。
+<ul>5.在lzispcn目录中，lzispcn.sh为项目工具的可执行脚本，若发现相关的读写运行权限不足，手工赋予755以上即可。</ul>
 
 三、脚本运行命令
 
@@ -93,7 +95,8 @@ IP address data acquisition tool for ISP network operators in China
 
 四、数据存储位置
 
-<ul>在项目目录lzispcn下，脚本为获取和生成的每类数据设立独立的存储目录。
+<ul>在项目目录lzispcn下，脚本为获取和生成的每类数据设立独立的存储目录。</ul>
+<ul>
 
 ```markdown
     lzispcn
@@ -108,7 +111,7 @@ IP address data acquisition tool for ISP network operators in China
 
 **卸载**
 
-直接删除lzispcn目录，脚本软件即可全部清除。
+<ul>直接删除lzispcn目录，脚本软件即可全部清除。</ul>
 
 **运行效果图**
 
