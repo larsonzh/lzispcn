@@ -13,7 +13,19 @@ IP address data acquisition tool for ISP network operators in China
 <ul><li>从APNIC下载当前最新的IP信息数据。</li>
 <li>从APINC IP信息数据中抽取出当前最新、最完整的中国大陆及港澳台地区所有IPv4/6原始地址数据。</li>
 <li>向APNIC逐条查询中国大陆地区的IPv4/6原始地址数据，得到归属信息，生成中国电信、中国联通/网通、中国移动、中国铁通、中国教育网、长城宽带/鹏博士、中国大陆其他ISP的能够包含中国大陆所有IPv4/6地址的ISP运营商地址数据。</li>
-<li>通过CIDR聚合算法生成压缩过的IPv4/6 CIDR格式地址数据。</li></ul>
+<li>通过CIDR聚合算法生成压缩过的IPv4/6 CIDR格式地址数据。</li>
+<li>提供的IPv4/6地址范围：</li>
+    <ul><li>中国大陆所有IP地址</li>
+    <li>中国电信地址网段</li>
+    <li>中国联通/网通地址网段</li>
+    <li>中国移动地址网段</li>
+    <li>中国铁通地址网段</li>
+    <li>中国教育网地址网段</li>
+    <li>长城宽带/鹏博士地址网段</li>
+    <li>中国大陆其他运营商地址网段</li>
+    <li>香港地区运营商地址网段</li>
+    <li>澳门地区运营商地址网段</li>
+    <li>台湾地区运营商地址网段</li></ul></ul>
 
 **安装及运行**
 
