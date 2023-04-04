@@ -65,9 +65,12 @@ IP address data acquisition tool for ISP network operators in China
     tar -xzvf lzispcn-[version ID].tgz
 ```
 </ul>
+
 4.将lzispcn目录复制或剪切粘贴到设备中希望放置本脚本的位置，则完成本软件的安装。
 
 5.在lzispcn目录中，lzispcn.sh为项目工具的可执行脚本，若发现相关的读写运行权限不足，手工赋予755以上即可。
+
+**实际效果图**
 
 ![lzispcn](https://user-images.githubusercontent.com/73221087/229751079-8ab97633-03d2-43e0-bc2c-810a2aec95c6.jpg)
 
