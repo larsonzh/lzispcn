@@ -892,10 +892,10 @@ show_header() {
     lz_echo "---------------------------------------------"
     lz_echo "Command (in the ${PATH_CURRENT})"
     lz_echo "ASUSWRT-Merlin | OpenWrt | ..."
-    lz_echo "Download ISP Data       ./lzispcn.sh"
+    lz_echo "Launch Script           ./lzispcn.sh"
     lz_echo "Forced Unlocking        ./lzispcn.sh unlock"
     lz_echo "Ubuntu | ..."
-    lz_echo "Download ISP Data  bash ./lzispcn.sh"
+    lz_echo "Launch Script      bash ./lzispcn.sh"
     lz_echo "Forced Unlocking   bash ./lzispcn.sh unlock"
     lz_echo "---------------------------------------------"
 }
