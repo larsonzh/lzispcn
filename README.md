@@ -11,11 +11,8 @@ IP address data acquisition tool for ISP network operators in China
 
 **功能**
 <ul><li>从APNIC下载当前最新的IP信息数据。</li>
-
 <li>从APINC IP信息数据中抽取出当前最新、最完整的中国大陆及港澳台地区所有IPv4/6原始地址数据。</li>
-
 <li>向APNIC逐条查询中国大陆地区的IPv4/6原始地址数据，得到归属信息，生成中国电信、中国联通/网通、中国移动、中国铁通、中国教育网、长城宽带/鹏博士、中国大陆其他ISP的能够包含中国大陆所有IPv4/6地址的ISP运营商地址数据。</li>
-
 <li>通过CIDR聚合算法生成压缩过的IPv4/6 CIDR格式地址数据。</li></ul>
 
 **安装及运行**
@@ -23,7 +20,7 @@ IP address data acquisition tool for ISP network operators in China
 一、安装支撑软件
 
 脚本使用前需在系统中联网安装必要的支撑软件包：whois，wget
-</ul><li>Ubuntu</li>
+<ul><li>Ubuntu</li>
 
 ```markdown
     sudo apt update
@@ -51,10 +48,13 @@ IP address data acquisition tool for ISP network operators in China
 
 2.将压缩包复制到设备的任意有读写权限的目录。
 
-3.在SHELL终端中使用解压缩命令在当前目录中将软件解压缩，生成lzispcn-[version ID]目录（例如：lzispcn-v1.0.0），进入其中可看到一个lzispcn目录，此为脚本的工作目录。
+3.在SHELL终端中使用解压缩命令在当前目录中将软件解压缩，生成lzispcn-[version ID]目录（例如：lzispcn-v1.0.0），进入其中可看到一个lzispcn目录，此为脚本的工作目录。<ul>
 ```markdown
     tar -xzvf lzispcn-[version ID].tgz
 ```
+</ul>
+
+
 
 ![lzispcn](https://user-images.githubusercontent.com/73221087/229751079-8ab97633-03d2-43e0-bc2c-810a2aec95c6.jpg)
 
