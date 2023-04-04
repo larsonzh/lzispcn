@@ -7,8 +7,8 @@
 # 2.Extract the latest IPv4/6 address raw data of Chinese Mainland, Hong Kong, Macao and Taiwan from the APINC IP
 #   information data.
 # 3.Query the original IPv4/6 address data in Chinese Mainland from APNIC one by one to get the attribution information,
-#   and generate the ISP operator address data of TELECOM, UNICOM/CNC, CMCC, CRTC, CERNET, GWBN, and other NETs that can
-#   contain all IPv4/6 addresses in Chinese Mainland.
+#   so as to generate the ISP operator address data of TELECOM, UNICOM/CNC, CMCC, CRTC, CERNET, GWBN and other ISPs,
+#   which covers all IPv4/6 addresses in Chinese Mainland.
 # 4.Generate compressed IPv4/6 CIDR format address data through the CIDR aggregation algorithm.
 
 # Script Command (e.g., in the lzispcn Directory)
