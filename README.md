@@ -47,6 +47,14 @@ IP address data acquisition tool for ISP network operators in China
 
 二、安装项目脚本
 
+1.下载本工具的软件压缩包“lzsipcn-[version ID].tgz”（例如：lzispcn-v1.0.0.tgz）。
+
+2.将压缩包复制到设备的任意有读写权限的目录。
+
+3.在SHELL终端中使用解压缩命令在当前目录中将软件解压缩，生成lzispcn-[version ID]目录（例如：lzispcn-v1.0.0），进入其中可看到一个lzispcn目录，此为脚本的工作目录。
+```markdown
+    tar -xzvf lzispcn-[version ID].tgz
+```
 
 ![lzispcn](https://user-images.githubusercontent.com/73221087/229751079-8ab97633-03d2-43e0-bc2c-810a2aec95c6.jpg)
 
