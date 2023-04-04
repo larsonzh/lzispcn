@@ -57,6 +57,8 @@ IP address data acquisition tool for ISP network operators in China
 ```
 </ul>
 
+<ul>其他Linux平台系统依此类推。</ul>
+
 二、安装项目脚本
 
 <ul>1.下载本工具的软件压缩包“lzsipcn-[version ID].tgz”（例如：lzispcn-v1.0.0.tgz）。</ul>
