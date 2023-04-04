@@ -14,7 +14,7 @@ IP address data acquisition tool for ISP network operators in China
 <li>从APINC IP信息数据中抽取出当前最新、最完整的中国大陆及港澳台地区所有IPv4/6原始地址数据。</li>
 <li>向APNIC逐条查询中国大陆地区的IPv4/6原始地址数据，得到归属信息，生成能够包含中国大陆地区所有IPv4/6地址的ISP运营商分项数据。</li>
 <li>通过CIDR聚合算法生成压缩过的IPv4/6 CIDR格式地址数据。</li>
-<li>中国IPv4/6地址数据：含4个地区和7个ISP运营商分项</li>
+<li>中国区IPv4/6地址数据：含4个地区分项和7个ISP运营商分项</li>
     <ul><li>大陆地区</li>
         <ul><li>中国电信</li>
         <li>中国联通/网通</li>
@@ -92,6 +92,19 @@ IP address data acquisition tool for ISP network operators in China
 <ul>3.创建ISP运营商数据时，程序需要通过互联网访问APNIC进行海量信息查询，这可能要耗费一、两个小时以上时间。此过程中，请不要中断脚本程序的执行过程，并保持耐心。</ul>
 
 四、数据存储位置
+
+<ul>在项目目录lzispcn下，脚本为获取和生成的每类数据设立独立的存储目录。
+
+```markdown
+    lzispcn
+        apnic
+        isp
+        cidr
+        ipv6
+        cidr_ipv6
+        tmp
+```
+</ul>
 
 **卸载**
 
