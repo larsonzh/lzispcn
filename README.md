@@ -19,8 +19,11 @@ IP address data acquisition tool for ISP network operators in China
 <li>通过CIDR聚合算法生成压缩过的IPv4/6 CIDR格式地址数据。</li></ul>
 
 **安装及运行**
-</ul>脚本使用前需在系统中安装必要的支撑软件包：whois，wget
-<li>Ubuntu</li>
+
+1.安装支撑软件
+
+脚本使用前需在系统中安装必要的支撑软件包：whois，wget
+</ul><li>Ubuntu</li>
 
 ```markdown
     sudo apt update
