@@ -31,6 +31,9 @@
 # shellcheck disable=SC2317  # Don't warn about unreachable commands in this function
 # shellcheck disable=SC2034
 
+# Project Filename
+PROJECT_FILENAME="${0##*/}"
+
 # Project File Deployment & Work Path
 PATH_CURRENT="${0%/*}"
 ! echo "${PATH_CURRENT}" | grep -q '^[\/]' && PATH_CURRENT="$( pwd )${PATH_CURRENT#*.}"
@@ -170,7 +173,9 @@ set_lock() {
             return "1"
         fi
     fi
-    [ -n "$( ps | awk '/bash/ && !/awk/' )" ] && LOCK_FILE_ID="9"
+    [ -n "$( ps | awk '/bash/ && !/awk/' )" ] \
+        && [ -n "$( ps a | awk '$0 ~ "'"${PROJECT_FILENAME:="lzispcn.sh"}"'" && $1 == "'"$$"'" && !/bash/ && !/awk/' )" ] \
+        && LOCK_FILE_ID="9"
     eval "exec ${LOCK_FILE_ID:="333"}<>${PATH_LOCK}/${LOCK_FILE:="lzispcn.lock"}"
     if ! flock -xn "${LOCK_FILE_ID}"; then
         lz_echo "Another instance is already running."
@@ -182,7 +187,7 @@ set_lock() {
 
 unset_lock() {
     [ "${LOCK_ENABLE:="0"}" = "0" ] && [ -f "${PATH_LOCK:="/var/lock"}/${LOCK_FILE:="lzispcn.lock"}" ] \
-        && flock -u "${LOCK_FILE_ID:="333"}" 2> /dev/null
+        && flock -u "${LOCK_FILE_ID:="333"}" 2> /dev/null && eval "exec ${LOCK_FILE_ID}<&-"
 }
 
 forced_unlock() {
