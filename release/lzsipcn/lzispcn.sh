@@ -12,7 +12,7 @@
 # 4.Generate compressed IPv4/6 CIDR format address data through the CIDR aggregation algorithm.
 
 # Script Command (e.g., in the lzispcn Directory)
-# Ubuntu | ...
+# Ubuntu | Deepin | ...
 # Launch Script        bash ./lzispcn.sh
 # Forced Unlocking     bash ./lzispcn.sh unlock
 # ASUSWRT-Merlin | OpenWrt | ...
@@ -165,12 +165,12 @@ set_lock() {
     if [ ! -d "${PATH_LOCK:="/var/lock"}" ]; then
         mkdir -p "${PATH_LOCK}"
         chmod 777 "${PATH_LOCK}"
-        if [ ! -d "${PATH_LOCK:="/var/lock"}" ]; then
+        if [ ! -d "${PATH_LOCK}" ]; then
             LOCK_ENABLE="1"
             return "1"
         fi
     fi
-    eval "exec ${LOCK_FILE_ID}<>${PATH_LOCK}/${LOCK_FILE}"
+    eval "exec ${LOCK_FILE_ID:="333"}<>${PATH_LOCK}/${LOCK_FILE:="lzispcn.lock"}"
     if ! flock -xn "${LOCK_FILE_ID}"; then
         lz_echo "Another instance is already running."
         LOCK_ENABLE="1"
@@ -180,7 +180,8 @@ set_lock() {
 }
 
 unset_lock() {
-    [ "${LOCK_ENABLE:="0"}" = "0" ] && [ -f "${PATH_LOCK}/${LOCK_FILE}" ] && flock -u "${LOCK_FILE_ID}" 2> /dev/null
+    [ "${LOCK_ENABLE:="0"}" = "0" ] && [ -f "${PATH_LOCK:="/var/lock"}/${LOCK_FILE:="lzispcn.lock"}" ] \
+        && flock -u "${LOCK_FILE_ID:="333"}" 2> /dev/null
 }
 
 forced_unlock() {
@@ -893,7 +894,7 @@ show_header() {
     lz_echo "By LZ (larsonzhang@gmail.com)"
     lz_echo "---------------------------------------------"
     lz_echo "Command (in the ${PATH_CURRENT})"
-    lz_echo "Ubuntu | ..."
+    lz_echo "Ubuntu | Deepin | ..."
     lz_echo "Launch Script      bash ./lzispcn.sh"
     lz_echo "Forced Unlocking   bash ./lzispcn.sh unlock"
     lz_echo "ASUSWRT-Merlin | OpenWrt | ..."

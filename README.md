@@ -32,7 +32,7 @@ IP address data acquisition tool for ISP network operators in China
 一、安装支撑软件
 
 <ul>脚本使用前最好将所在系统到最升级新版本，同时需要在系统中联网安装脚本执行时依赖的软件包：whois，wget</ul>
-<ul><li>Ubuntu</li>
+<ul><li>Ubuntu | Deepin</li>
 
 ```markdown
   sudo apt update
@@ -83,7 +83,7 @@ IP address data acquisition tool for ISP network operators in China
 
 ```markdown
   假设当前位于 lzispcn 目录
-  Ubuntu | ...
+  Ubuntu | Deepin | ...
   启动脚本    bash ./lzispcn.sh
   强制解锁    bash ./lzispcn.sh unlock
   ASUSWRT-Merlin | OpenWrt | ...
