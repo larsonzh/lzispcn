@@ -173,8 +173,8 @@ set_lock() {
             return "1"
         fi
     fi
-    [ -n "$( ps | awk '/bash/ && !/awk/' )" ] \
-        && [ -n "$( ps a | awk '$0 ~ "'"${PROJECT_FILENAME:="lzispcn.sh"}"'" && $1 == "'"$$"'" && !/bash/ && !/awk/' )" ] \
+    ps | awk '!/awk/ && !/grep/' | grep -qw 'bash' \
+        && ! ps a | awk '$1 == "'"$$"'" && !/awk/ && !/grep/' | grep -qw 'bash' \
         && LOCK_FILE_ID="9"
     eval "exec ${LOCK_FILE_ID:="333"}<>${PATH_LOCK}/${LOCK_FILE:="lzispcn.lock"}"
     if ! flock -xn "${LOCK_FILE_ID}"; then
