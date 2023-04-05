@@ -93,7 +93,7 @@ IP address data acquisition tool for ISP network operators in China
 </ul>
 <ul>1.通过 Shell 终端启动脚本后，在操作过程中不要关闭终端窗口，这可能导致程序执行过程意外中断。</ul>
 <ul>2.脚本在系统中只能有一个实例进程运行。若上次运行过程中非正常退出，再次运行如果提示有另一个实例正在运行，在确认系统中本脚本确实没有实例正在运行后，可以执行「强制解锁」命令或重启系统，然后再执行「启动脚本」命令。</ul>
-<ul>3.创建 ISP 运营商数据时，程序需要通过互联网访问 APNIC 做海量信息查询，可能要耗费一、两个小时以上时间。切勿中断此执行过程，并耐心等候。</ul>
+<ul>3.进行 ISP 运营商分项数据归类时，脚本需要通过互联网访问 APNIC 做海量信息查询，可能要耗费一、两个小时以上时间。切勿中断此执行过程，并耐心等候。</ul>
 
 四、目录结构
 
@@ -136,4 +136,4 @@ IP address data acquisition tool for ISP network operators in China
 
 **运行效果图**
 
-![lzispcn](https://user-images.githubusercontent.com/73221087/230026506-ff9be79f-f4c6-45c1-8498-c658630f643d.jpg)
+![lzispcn](https://user-images.githubusercontent.com/73221087/230068067-f8b25a75-712d-43c2-97fe-f8911873aa06.jpg)
