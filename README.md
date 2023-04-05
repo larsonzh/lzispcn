@@ -31,7 +31,7 @@ IP address data acquisition tool for ISP network operators in China
 
 一、安装支撑软件
 
-<ul>脚本使用前最好将所在系统升级到最新版本，同时需要在系统中联网安装脚本执行时依赖的软件包：whois，wget</ul>
+<ul>脚本使用前最好将所在系统升级到最新版本，同时要在系统中联网安装脚本执行时必须依赖的软件包：whois，wget</ul>
 <ul><li>Ubuntu | Deepin</li>
 
 ```markdown
