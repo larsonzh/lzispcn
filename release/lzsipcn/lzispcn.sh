@@ -170,6 +170,7 @@ set_lock() {
             return "1"
         fi
     fi
+    [ -n "$( ps | awk '/bash/ && !/awk/' )" ] && LOCK_FILE_ID="9"
     eval "exec ${LOCK_FILE_ID:="333"}<>${PATH_LOCK}/${LOCK_FILE:="lzispcn.lock"}"
     if ! flock -xn "${LOCK_FILE_ID}"; then
         lz_echo "Another instance is already running."
