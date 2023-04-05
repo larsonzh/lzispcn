@@ -31,9 +31,6 @@
 # shellcheck disable=SC2317  # Don't warn about unreachable commands in this function
 # shellcheck disable=SC2034
 
-# Project Filename
-PROJECT_FILENAME="${0##*/}"
-
 # Project File Deployment & Work Path
 PATH_CURRENT="${0%/*}"
 ! echo "${PATH_CURRENT}" | grep -q '^[\/]' && PATH_CURRENT="$( pwd )${PATH_CURRENT#*.}"
