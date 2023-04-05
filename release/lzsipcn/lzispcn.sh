@@ -33,7 +33,7 @@
 
 # Project File Deployment & Work Path
 PATH_CURRENT="${0%/*}"
-[ "${PATH_CURRENT:0:1}" != '/' ] && PATH_CURRENT="$( pwd )${PATH_CURRENT#*.}"
+! echo "${PATH_CURRENT}" | grep -q '^[\/]' && PATH_CURRENT="$( pwd )${PATH_CURRENT#*.}"
 PATH_APNIC="${PATH_CURRENT}/apnic"
 PATH_ISP="${PATH_CURRENT}/isp"
 PATH_CIDR="${PATH_CURRENT}/cidr"
@@ -335,7 +335,7 @@ init_directory() {
         [ -f "${PATH_TMP}/${cidr_fname%.*}.dat" ] && rm -f "${PATH_TMP}/${cidr_fname%.*}.dat"
         [ -f "${PATH_TMP}/${ipv6_fname%.*}.dat" ] && rm -f "${PATH_TMP}/${ipv6_fname%.*}.dat"
         [ -f "${PATH_TMP}/${cidr_ipv6_fname%.*}.dat" ] && rm -f "${PATH_TMP}/${cidr_ipv6_fname%.*}.dat"
-        [ $(( ++ index )) ]
+        index="$(( index + 1 ))"
     done
     return "0"
 }
@@ -396,7 +396,7 @@ make_data_one_to_four() {
     until [ "${index}" -ge "4" ]
     do
         eval [ -f "\${1}_${index}" ] && eval rm -f "\${1}_${index}"
-        [ $(( ++ index )) ]
+        index="$(( index + 1 ))"
     done
     local total="$( grep -Eic '^([0-9]{1,3}[\.]){3}[0-9]{1,3}([\/][0-9]{1,2}){0,1}$|^[\:0-9a-f]{0,4}[\:][\:0-9a-f]*([\/][0-9]{1,3}){0,1}$' "${1}" )"
     [ "${total}" = "0" ] && return "1"
@@ -419,7 +419,7 @@ make_data_one_to_four() {
         }' "${1}" >> "${1}_${index}"
         ! grep -qEi '^([0-9]{1,3}[\.]){3}[0-9]{1,3}([\/][0-9]{1,2}){0,1}$|^[\:0-9a-f]{0,4}[\:][\:0-9a-f]*([\/][0-9]{1,3}){0,1}$' "${1}_${index}" \
             && rm -f "${1}_${index}"
-        [ $(( ++ index )) ]
+        index="$(( index + 1 ))"
     done
     return "0"
 }
@@ -429,7 +429,7 @@ init_isp_data_buf() {
     until [ "${index}" -gt "7" ]
     do
         eval DATA_BUF_"${index}"=""
-        [ $(( ++ index )) ]
+        index="$(( index + 1 ))"
     done
 }
 
@@ -438,7 +438,7 @@ unset_isp_data_buf() {
     until [ "${index}" -gt "7" ]
     do
         eval unset DATA_BUF_"${index}"
-        [ $(( ++ index )) ]
+        index="$(( index + 1 ))"
     done
 }
 
@@ -474,13 +474,13 @@ write_isp_data_file() {
         eval fname="${PATH_TMP}/\${${prefix}${index}}"
         [ -n "${buf}" ] && buf="$( echo "${buf}" | sed '/^[ ]*$/d' )"
         [ -n "${buf}" ] && echo "${buf}" >> "${fname%.*}.dat"
-        [ $(( ++ index )) ]
+        index="$(( index + 1 ))"
     done
     init_isp_data_buf
 }
 
 add_isp_data() {
-    local DATA_BUF="" retval="0" count="0" line="" isp_info="" reties="0" index="0" suffix="s"
+    local DATA_BUF="" retval="0" count="0" line="" isp_info="" retry="0" index="0" suffix="s"
     [ -z "${WHOIS_HOST}" ] && WHOIS_HOST="whois.apnic.net"
     if [ "${1}" = "ipv4" ]; then
         lz_echo "Obtain ISP IPv4 item data takes a long time."
@@ -498,19 +498,19 @@ add_isp_data() {
         if [ -z "${isp_info}" ]; then
             [ "${PROGRESS_BAR}" = "0" ] && echo ""
             retval="1"
-            reties="0"
-            until [ "${reties}" -ge "${RETRY_NUM}" ]
+            retry="0"
+            until [ "${retry}" -ge "${RETRY_NUM}" ]
             do
                 lz_echo "Transmission failure."
                 lz_echo "${line} details weren't received from ${WHOIS_HOST}."
-                lz_echo "Retrying($(( reties + 1 )))......."
+                lz_echo "Retrying($(( retry + 1 )))......."
                 isp_info="$( get_isp_details "${line}" )"
                 [ -n "${isp_info}" ] && {
                     retval="0"
                     lz_echo "Data received, continue......."
                     break
                 }
-                [ $(( ++ reties )) ]
+                retry="$(( retry + 1 ))"
                 sleep "$( awk 'BEGIN{printf "%d\n", "'"${RETRY_NUM}"'"*rand()+1}' )s"
             done
             [ "${retval}" != "0" ] && {
@@ -519,7 +519,7 @@ add_isp_data() {
                 break
             }
         fi
-        [ $(( ++ count )) ]
+        count="$(( count + 1 ))"
         write_isp_data_buf "${isp_info}" "${line}"
         [ "$(( count % 200 ))" = "0" ] && write_isp_data_file "${1}"
     done <<DATA_BUF_INPUT
@@ -549,7 +549,7 @@ check_isp_data() {
             lz_echo "${fname} Failed. Game Over !!!"
             return "1"
         fi
-        [ $(( ++ index )) ]
+        index="$(( index + 1 ))"
     done
     return "0"
 }
@@ -602,7 +602,7 @@ aggregate_ipv4_data() {
             if grep -q "^${next_item}$" "${2}"; then
                 sed -i -e "s:^${ip_item}$:${ip_item%/*}/$(( mask - 1 )):" -e "s:^${next_item}$:#&:" "${2}"
                 [ "${PROGRESS_BAR}" = "0" ] && [ "$(( count % 10 ))" = "0" ] && echo -n "."
-                [ $(( ++ count )) ]
+                count="$(( count + 1 ))"
                 if [ "${IPV4_DATA:="0"}" = "1" ]; then
                     # Used to correct APNIC raw data errors. In principle, this situation should not occur, 
                     # otherwise it will cause chaos in the online world.
@@ -617,16 +617,16 @@ aggregate_ipv4_data() {
                         if grep -qE "^${addr_header//"."/"\."}${i}[\.]" "${2}"; then
                             sed -i "s:^${addr_header//"."/"\."}${i}[\.]:#&:" "${2}"
                             [ "${PROGRESS_BAR}" = "0" ] && [ "$(( count % 10 ))" = "0" ] && echo -n "."
-                            [ $(( ++ count )) ]
+                            count="$(( count + 1 ))"
                         fi
-                        [ $(( ++ i )) ]
+                        i="$(( i + 1 ))"
                     done
                 fi
             fi
         done <<IP_BUF_INPUT
 ${IP_BUF}
 IP_BUF_INPUT
-        [ $(( ++ index )) ]
+        index="$(( index + 1 ))"
     done
     sed -i '/#/d' "${2}"
     [ "${PROGRESS_BAR}" = "0" ] && echo "."
@@ -650,7 +650,7 @@ get_ipv4_cidr_data() {
             lz_echo "${fname} Failed. Game Over !!!"
             return "1"
         fi
-        [ $(( ++ index )) ]
+        index="$(( index + 1 ))"
     done
     return "0"
 }
@@ -734,7 +734,7 @@ aggregate_ipv6_data() {
             if grep -qE "^${next_item}$" "${2}"; then
                 sed -i -e "s|^${ip_item}$|${ip_item%/*}/$(( mask - 1 ))|" -e "s|^${next_item}$|#&|" "${2}"
                 [ "${PROGRESS_BAR}" = "0" ] && [ "$(( count % 10 ))" = "0" ] && echo -n "."
-                [ $(( ++ count )) ]
+                count="$(( count + 1 ))"
                 if [ "${IPV6_DATA:="2"}" = "1" ]; then
                     local addr_header="" nno=""
                     local tail_no="$(( 6 - index / 16 ))"
@@ -746,7 +746,7 @@ aggregate_ipv6_data() {
                         if grep -qE "^${addr_header//":"/"\:"}${i}[\:]" "${2}"; then
                             sed -i "s|^${addr_header//":"/"\:"}${i}[\:]|#&|" "${2}"
                             [ "${PROGRESS_BAR}" = "0" ] && [ "$(( count % 10 ))" = "0" ] && echo -n "."
-                            [ $(( ++ count )) ]
+                            count="$(( count + 1 ))"
                         fi
                         i="$( awk 'BEGIN{printf "%x\n", "'"0x${i}"'" + 1}' )"
                     done
@@ -755,7 +755,7 @@ aggregate_ipv6_data() {
         done <<IP_BUF_INPUT
 ${IP_BUF}
 IP_BUF_INPUT
-        [ $(( ++ index )) ]
+        index="$(( index + 1 ))"
     done
     [ "${PROGRESS_BAR}" = "0" ] && echo -n "."
     sed -i -e '/#/d' -e 's/\([:][0]\)\{2,7\}/::/' -e 's/:::/::/' -e 's/^0::/::/' -e '/^[ ]*$/d' "${2}"
@@ -780,7 +780,7 @@ get_ipv6_cidr_data() {
             lz_echo "${fname} Failed. Game Over !!!"
             return "1"
         fi
-        [ $(( ++ index )) ]
+        index="$(( index + 1 ))"
     done
     return "0"
 }
@@ -806,14 +806,14 @@ save_data() {
         until [ "${index}" -gt "10" ]
         do
             eval save_target_data "${PATH_ISP}" "\${ISP_DATA_${index}}" || return "1"
-            [ $(( ++ index )) ]
+            index="$(( index + 1 ))"
         done
         if [ "${IPV4_DATA}" = "0" ] || [ "${IPV4_DATA}" = "1" ]; then
             index="0"
             until [ "${index}" -gt "10" ]
             do
                 eval save_target_data "${PATH_CIDR}" "\${ISP_CIDR_DATA_${index}}" || return "1"
-                [ $(( ++ index )) ]
+                index="$(( index + 1 ))"
             done
         fi
     fi
@@ -822,14 +822,14 @@ save_data() {
         until [ "${index}" -gt "10" ]
         do
             eval save_target_data "${PATH_IPV6}" "\${ISP_IPV6_DATA_${index}}" || return "1"
-            [ $(( ++ index )) ]
+            index="$(( index + 1 ))"
         done
         if [ "${IPV6_DATA}" = "0" ] || [ "${IPV6_DATA}" = "1" ]; then
             index="0"
             until [ "${index}" -gt "10" ]
             do
                 eval save_target_data "${PATH_IPV6_CIDR}" "\${ISP_IPV6_CIDR_DATA_${index}}" || return "1"
-                [ $(( ++ index )) ]
+                index="$(( index + 1 ))"
             done
         fi
     fi
