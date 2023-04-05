@@ -134,6 +134,7 @@ LOCK_ENABLE="0"
 # Synchronization Lock File Path & Name
 PATH_LOCK="/var/lock"
 LOCK_FILE="lzispcn.lock"
+LOCK_FILE_ID="333"
 
 # Forced Unlocking Command Word
 UNLOCK_CMD="unlock"
@@ -160,31 +161,32 @@ lz_echo() {
 }
 
 set_lock() {
-    [ ! -d "${PATH_LOCK:="/var/lock"}" ] && {
-        LOCK_ENABLE="1"
-        return "1"
-    }
-    [ -f "${PATH_LOCK}/${LOCK_FILE:="lzispcn.lock"}" ] && {
+    [ "${LOCK_ENABLE:="0"}" != "0" ] && return "0"
+    if [ ! -d "${PATH_LOCK:="/var/lock"}" ]; then
+        mkdir -p "${PATH_LOCK}"
+        chmod 777 "${PATH_LOCK}"
+        if [ ! -d "${PATH_LOCK:="/var/lock"}" ]; then
+            LOCK_ENABLE="1"
+            return "1"
+        fi
+    fi
+    eval "exec ${LOCK_FILE_ID}<>${PATH_LOCK}/${LOCK_FILE}"
+    if ! flock -xn "${LOCK_FILE_ID}"; then
         lz_echo "Another instance is already running."
         LOCK_ENABLE="1"
         return "1"
-    }
-    touch "${PATH_LOCK}/${LOCK_FILE}"
-    [ ! -f "${PATH_LOCK}/${LOCK_FILE}" ] && {
-        lz_echo "Failed to create a program synchronization lock."
-        LOCK_ENABLE="1"
-        return "1"
-    }
+    fi
     return "0"
 }
 
 unset_lock() {
-    [ "${LOCK_ENABLE:="0"}" = "0" ] && [ -f "${PATH_LOCK}/${LOCK_FILE}" ] && rm -f "${PATH_LOCK}/${LOCK_FILE}" 2> /dev/null
+    [ "${LOCK_ENABLE:="0"}" = "0" ] && [ -f "${PATH_LOCK}/${LOCK_FILE}" ] && flock -u "${LOCK_FILE_ID}" 2> /dev/null
 }
 
 forced_unlock() {
     [ "$( awk 'BEGIN{print tolower("'"${1}"'")}' )" != "${UNLOCK_CMD:="unlock"}" ] && return "1"
     if [ -f "${PATH_LOCK:="/var/lock"}/${LOCK_FILE:="lzispcn.lock"}" ]; then
+        rm -f "${PATH_LOCK}/${LOCK_FILE}"
         lz_echo "Forced Unlocking OK"
     else
         lz_echo "No Locking"
