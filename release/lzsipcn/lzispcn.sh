@@ -1,5 +1,5 @@
 #!/bin/sh
-# lzispcn.sh v1.0.0
+# lzispcn.sh v1.0.1
 # By LZ 妙妙呜 (larsonzhang@gmail.com)
 
 # Purpose:
@@ -117,6 +117,7 @@ DOWNLOAD_URL="http://ftp.apnic.net/apnic/stats/apnic/delegated-apnic-latest"
 WHOIS_HOST="whois.apnic.net"
 
 # Maximum Number Of Retries After IP Address Query Failure
+# 0--Unlimited, 5--Default
 RETRY_NUM="5"
 
 # Progress Bar
@@ -139,7 +140,7 @@ LOCK_FILE_ID="333"
 # Forced Unlocking Command Word
 UNLOCK_CMD="unlock"
 
-LZ_VERSION="v1.0.0"
+LZ_VERSION="v1.0.1"
 
 
 lz_date() { date +"%F %T"; }
@@ -171,7 +172,8 @@ set_lock() {
         fi
     fi
     ps | awk '!/awk/ && !/grep/' | grep -qw 'bash' \
-        && ! ps a | awk '$1 == "'"$$"'" && !/awk/ && !/grep/' | grep -qw 'bash' \
+        && ! ps | awk '$1 == "'"$$"'" && !/awk/ && !/grep/' | grep -qw 'bash' \
+        && ! ps a 2> /dev/null | awk '$1 == "'"$$"'" && !/awk/ && !/grep/' | grep -qw 'bash' \
         && LOCK_FILE_ID="9"
     eval "exec ${LOCK_FILE_ID:="333"}<>${PATH_LOCK}/${LOCK_FILE:="lzispcn.lock"}"
     if ! flock -xn "${LOCK_FILE_ID}"; then
@@ -184,7 +186,8 @@ set_lock() {
 
 unset_lock() {
     [ "${LOCK_ENABLE:="0"}" = "0" ] && [ -f "${PATH_LOCK:="/var/lock"}/${LOCK_FILE:="lzispcn.lock"}" ] \
-        && flock -u "${LOCK_FILE_ID:="333"}" 2> /dev/null && eval "exec ${LOCK_FILE_ID}<&-"
+        && flock -u "${LOCK_FILE_ID:="333"}" 2> /dev/null \
+        && { eval "exec ${LOCK_FILE_ID}<&-"; eval "exec ${LOCK_FILE_ID}>&-"; }
 }
 
 forced_unlock() {
@@ -209,7 +212,7 @@ check_module() {
     return "1"
 }
 
-init_directory() {
+init_project_dir() {
     chmod -R 775 "${PATH_CURRENT}"/*
     [ "${PATH_TMP}" = "${PATH_APNIC}" ] && {
         lz_echo "The PATH_TMP directory cann't have the same name"
@@ -257,7 +260,7 @@ init_directory() {
         return "1"
     }
     [ -f "${PATH_TMP}/${APNIC_IP_INFO%.*}.dat" ] && rm -f "${PATH_TMP}/${APNIC_IP_INFO%.*}.dat"
-    local index="0" fname="" cidr_fname=""
+    local index="0" fname="" cidr_fname="" ipv6_fname="" cidr_ipv6_fname=""
     until [ "${index}" -gt "10" ]
     do
         eval fname="\${ISP_DATA_${index}}"
@@ -393,7 +396,7 @@ get_area_data() {
     return "1"
 }
 
-make_data_one_to_four() {
+divide_data_into_four() {
     [ ! -f "${1}" ] && return "1"
     local index="0"
     until [ "${index}" -ge "4" ]
@@ -483,7 +486,7 @@ write_isp_data_file() {
 }
 
 add_isp_data() {
-    local DATA_BUF="" retval="0" count="0" line="" isp_info="" retry="0" index="0" suffix="s"
+    local DATA_BUF="" retval="0" count="0" line="" isp_info="" retry="0" suffix="s"
     [ -z "${WHOIS_HOST}" ] && WHOIS_HOST="whois.apnic.net"
     if [ "${1}" = "ipv4" ]; then
         lz_echo "Obtain ISP IPv4 item data takes a long time."
@@ -502,7 +505,7 @@ add_isp_data() {
             [ "${PROGRESS_BAR}" = "0" ] && echo ""
             retval="1"
             retry="0"
-            until [ "${retry}" -ge "${RETRY_NUM}" ]
+            while true
             do
                 lz_echo "Transmission failure."
                 lz_echo "${line} details weren't received from ${WHOIS_HOST}."
@@ -514,7 +517,12 @@ add_isp_data() {
                     break
                 }
                 retry="$(( retry + 1 ))"
-                sleep "$( awk 'BEGIN{printf "%d\n", "'"${RETRY_NUM}"'"*rand()+1}' )s"
+                if [ "${RETRY_NUM}" != "0" ]; then
+                    [ "${retry}" -ge "${RETRY_NUM}" ] && break
+                    sleep "$( awk 'BEGIN{printf "%d\n", "'"${RETRY_NUM}"'"*rand()+1}' )s"
+                else
+                    sleep "$( awk 'BEGIN{printf "%d\n", 10*rand()+1}' )s"
+                fi
             done
             [ "${retval}" != "0" ] && {
                 [ "${RETRY_NUM}" -le "1" ] && suffix=""
@@ -522,8 +530,8 @@ add_isp_data() {
                 break
             }
         fi
-        count="$(( count + 1 ))"
         write_isp_data_buf "${isp_info}" "${line}"
+        count="$(( count + 1 ))"
         [ "$(( count % 200 ))" = "0" ] && write_isp_data_file "${1}"
     done <<DATA_BUF_INPUT
 ${DATA_BUF}
@@ -893,7 +901,7 @@ get_file_time_stamp() {
 
 show_header() {
     lz_echo
-    lz_echo "LZ ISPCN ${LZ_VERSION:="v1.0.0"} script commands start......"
+    lz_echo "LZ ISPCN ${LZ_VERSION:="v1.0.1"} script commands start......"
     lz_echo "By LZ (larsonzhang@gmail.com)"
     lz_echo "---------------------------------------------"
     lz_echo "Command (in the ${PATH_CURRENT})"
@@ -938,7 +946,7 @@ do
     set_lock || break
     check_module "whois" || break
     check_module "wget" || break
-    init_directory || break
+    init_project_dir || break
     get_apnic_info || break
     get_area_data "CN" "ipv4" "${ISP_DATA_0}" || break
     get_isp_data "ipv4" || break
