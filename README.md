@@ -7,7 +7,7 @@ IP address data acquisition tool for ISP network operators in China
 
 工具采用 Shell 脚本编写，参考并借鉴 clangcn（ https://github.com/clangcn/everyday-update-cn-isp-ip.git ）项目代码和思路，对信息检索和数据写入过程做了些优化。在提供 IPv4 数据获取的同时，增加 IPv6 数据获取功能，以及基于 CIDR 网段聚合算法的 IPv4/6 CIDR 地址数据的生成功能。
 
-本产品同时是本人后续的多进程并行处理 lzispro 项目（ https://github.com/larsonzh/lzispcn.git ）的单进程基础版本。
+本产品同时是本人后续的 lzispro 多进程并行处理项目（ https://github.com/larsonzh/lzispro.git ）的单进程基础版本。
 
 脚本在 Linux 环境下使用，运行平台包括：Ubuntu，Deepin，ASUSWRT-Merlin，OpenWrt，......
 
