@@ -3,9 +3,11 @@ IP address data acquisition tool for ISP network operators in China
 
 中国区 ISP 网络运营商 IP 地址数据获取工具
 
-**v1.0.1**
+**v1.0.2**
 
 工具采用 Shell 脚本编写，参考并借鉴 clangcn（ https://github.com/clangcn/everyday-update-cn-isp-ip.git ）项目代码和思路，对信息检索和数据写入过程做了些优化。在提供 IPv4 数据获取的同时，增加 IPv6 数据获取功能，以及基于 CIDR 网段聚合算法的 IPv4/6 CIDR 地址数据的生成功能。
+
+本产品同时是本人后续的多进程并行处理 lzispro 项目（ https://github.com/larsonzh/lzispcn.git ）的单进程基础版本。
 
 脚本在 Linux 环境下使用，运行平台包括：Ubuntu，Deepin，ASUSWRT-Merlin，OpenWrt，......
 
@@ -61,11 +63,11 @@ IP address data acquisition tool for ISP network operators in China
 
 二、安装项目脚本
 
-<ul>1.下载本工具的软件压缩包 lzsipcn-[version ID].tgz（例如：lzispcn-v1.0.1.tgz）。</ul>
+<ul>1.下载本工具的软件压缩包 lzsipcn-[version ID].tgz（例如：lzispcn-v1.0.2.tgz）。</ul>
 
 <ul>2.将压缩包复制到设备的任意有读写权限的目录。</ul>
 
-<ul>3.在 Shell 终端中使用解压缩命令在当前目录中解压缩，生成 lzispcn-[version ID] 目录（例如：lzispcn-v1.0.1），其中包含一个 lzispcn 目录，是脚本所在目录。</ul>
+<ul>3.在 Shell 终端中使用解压缩命令在当前目录中解压缩，生成 lzispcn-[version ID] 目录（例如：lzispcn-v1.0.2），其中包含一个 lzispcn 目录，是脚本所在目录。</ul>
 <ul>
 
 ```markdown
@@ -135,5 +137,6 @@ IP address data acquisition tool for ISP network operators in China
 <ul>直接删除 lzispcn 目录。</ul>
 
 **运行效果图**
+<ul>华硕 GT-AX6000 梅林固件路由器，四核心 ARM CPU，主频 2.0 MHz。</ul>
 
 ![lzispcn](https://user-images.githubusercontent.com/73221087/230068067-f8b25a75-712d-43c2-97fe-f8911873aa06.jpg)

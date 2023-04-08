@@ -1,6 +1,8 @@
 #!/bin/sh
-# lzispcn.sh v1.0.1
+# lzispcn.sh v1.0.2
 # By LZ 妙妙呜 (larsonzhang@gmail.com)
+
+# IP address data acquisition tool for ISP network operators in China
 
 # Purpose:
 # 1.Download the latest IP information data from APNIC.
@@ -140,7 +142,7 @@ LOCK_FILE_ID="333"
 # Forced Unlocking Command Word
 UNLOCK_CMD="unlock"
 
-LZ_VERSION="v1.0.1"
+LZ_VERSION="v1.0.2"
 
 
 lz_date() { date +"%F %T"; }
@@ -900,8 +902,9 @@ get_file_time_stamp() {
 }
 
 show_header() {
+    BEGIN_TIME="$( date +%s -d "$( date +"%F %T" )" )"
     lz_echo
-    lz_echo "LZ ISPCN ${LZ_VERSION:="v1.0.1"} script commands start......"
+    lz_echo "LZ ISPCN ${LZ_VERSION:="v1.0.2"} script commands start......"
     lz_echo "By LZ (larsonzhang@gmail.com)"
     lz_echo "---------------------------------------------"
     lz_echo "Command (in the ${PATH_CURRENT})"
@@ -931,6 +934,11 @@ show_data_path() {
             lz_echo "ISP IPv6 CIDR   ${PATH_IPV6_CIDR}"
         fi
     fi
+    local end_time="$( date +%s -d "$( date +"%F %T" )" )"
+    local elapsed_hour="$( printf "%02u\n" "$(( ( end_time - BEGIN_TIME ) / 3600 ))" )"
+    local elapsed_min="$( printf "%02u\n" "$(( ( ( end_time - BEGIN_TIME ) % 3600 ) / 60 ))" )"
+    local elapsed_sec="$( printf "%02u\n" "$(( ( end_time - BEGIN_TIME ) % 60 ))" )"
+    lz_echo "Elapsed Time           ${elapsed_hour}:${elapsed_min}:${elapsed_sec}"
 }
 
 show_tail() {
